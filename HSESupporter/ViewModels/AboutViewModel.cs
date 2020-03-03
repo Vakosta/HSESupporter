@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -9,7 +8,7 @@ namespace HSESupporter.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "О приложении";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://xamarin.com"));
         }
 

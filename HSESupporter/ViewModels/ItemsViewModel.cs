@@ -2,34 +2,32 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
-using Xamarin.Forms;
-
 using HSESupporter.Models;
 using HSESupporter.Views;
+using Xamarin.Forms;
 
 namespace HSESupporter.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        public ObservableCollection<Item> Items { get; set; }
-        public Command LoadItemsCommand { get; set; }
-
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Проблемы";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
-                var newItem = item as Item;
+                var newItem = item;
                 Items.Add(newItem);
                 await DataStore.AddItemAsync(newItem);
             });
         }
 
-        async Task ExecuteLoadItemsCommand()
+        public ObservableCollection<Item> Items { get; set; }
+        public Command LoadItemsCommand { get; set; }
+
+        private async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
                 return;
@@ -40,10 +38,7 @@ namespace HSESupporter.ViewModels
             {
                 Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
+                foreach (var item in items) Items.Add(item);
             }
             catch (Exception ex)
             {

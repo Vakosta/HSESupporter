@@ -1,14 +1,11 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using HSESupporter.Services;
+﻿using HSESupporter.Services;
 using HSESupporter.Views;
+using Xamarin.Forms;
 
 namespace HSESupporter
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();

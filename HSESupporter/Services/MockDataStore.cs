@@ -8,18 +8,21 @@ namespace HSESupporter.Services
 {
     public class MockDataStore : IDataStore<Item>
     {
-        readonly List<Item> items;
+        private readonly List<Item> items;
 
         public MockDataStore()
         {
-            items = new List<Item>()
+            items = new List<Item>
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new Item
+                {
+                    Id = Guid.NewGuid().ToString(), Text = "Первая проблема", Description = "Что-то сломалось..."
+                },
+                new Item
+                {
+                    Id = Guid.NewGuid().ToString(), Text = "Вторая проблема", Description = "Что-то не работает..."
+                },
+                new Item {Id = Guid.NewGuid().ToString(), Text = "Третья проблема", Description = "Кто-то мешает..."}
             };
         }
 
@@ -32,7 +35,7 @@ namespace HSESupporter.Services
 
         public async Task<bool> UpdateItemAsync(Item item)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+            var oldItem = items.Where(arg => arg.Id == item.Id).FirstOrDefault();
             items.Remove(oldItem);
             items.Add(item);
 
@@ -41,7 +44,7 @@ namespace HSESupporter.Services
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+            var oldItem = items.Where(arg => arg.Id == id).FirstOrDefault();
             items.Remove(oldItem);
 
             return await Task.FromResult(true);
