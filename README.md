@@ -2,8 +2,8 @@
 **HSESupporter** — приложение для технической поддержки студентов общежитий [Высшей Школы Экономики](https://www.hse.ru/).
 
 ## Связанные репозитории
-- [Сервер](https://github.com/Vakosta/HSESupporterBackend) на Python
-- [Техническое задание](https://github.com/Vakosta/HSESupporter-TechnicalTask) на LaTeX
+- [Сервер](https://github.com/Vakosta/HSESupporterBackend) на Python;
+- [Техническое задание](https://github.com/Vakosta/HSESupporter-TechnicalTask) на LaTeX.
 
 ## Контакты
 Со мной можно связаться в Telegram: [@vakosta](https://t.me/vakosta).
