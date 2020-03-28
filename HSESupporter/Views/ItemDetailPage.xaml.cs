@@ -1,10 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
+﻿using System.ComponentModel;
 using HSESupporter.Models;
 using HSESupporter.ViewModels;
+using Xamarin.Forms;
 
 namespace HSESupporter.Views
 {
@@ -13,13 +10,13 @@ namespace HSESupporter.Views
     [DesignTimeVisible(false)]
     public partial class ItemDetailPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        private readonly ItemDetailViewModel _viewModel;
 
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = viewModel;
+            BindingContext = _viewModel = viewModel;
         }
 
         public ItemDetailPage()
@@ -32,8 +29,8 @@ namespace HSESupporter.Views
                 Description = "This is an item description."
             };
 
-            viewModel = new ItemDetailViewModel(item);
-            BindingContext = viewModel;
+            _viewModel = new ItemDetailViewModel(item);
+            BindingContext = _viewModel;
         }
     }
 }

@@ -12,7 +12,7 @@
                    TextColor="#5B69FF" />
             <Entry Placeholder="Логин" Margin="12,0" />
             <Entry Placeholder="Пароль" Margin="12,0" />
-            <Button Text="Войти" FontSize="22" />
+            <Button Text="Войти" FontSize="22" Clicked="Button_OnClicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
