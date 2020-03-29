@@ -19,7 +19,7 @@ namespace HSESupporter.Views
         {
             try
             {
-                var api = new ApiService().hseSupporterApi;
+                var api = new ApiService().HseSupporterApi;
 
                 var values = new Dictionary<string, object>
                 {

@@ -23,7 +23,7 @@ namespace HSESupporter.Views
 
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
+            var item = args.SelectedItem as Problem;
             if (item == null)
                 return;
 

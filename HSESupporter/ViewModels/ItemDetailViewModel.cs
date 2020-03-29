@@ -1,16 +1,15 @@
-﻿using System;
-
-using HSESupporter.Models;
+﻿using HSESupporter.Models;
 
 namespace HSESupporter.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public ItemDetailViewModel(Problem item = null)
         {
-            Title = item?.Text;
+            Title = item?.Title;
             Item = item;
         }
+
+        public Problem Item { get; set; }
     }
 }

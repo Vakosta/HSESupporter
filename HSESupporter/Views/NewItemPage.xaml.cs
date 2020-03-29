@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 using HSESupporter.Models;
+using HSESupporter.Services;
+using Xamarin.Forms;
 
 namespace HSESupporter.Views
 {
@@ -13,8 +12,6 @@ namespace HSESupporter.Views
     [DesignTimeVisible(false)]
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
-
         public NewItemPage()
         {
             InitializeComponent();
@@ -28,13 +25,23 @@ namespace HSESupporter.Views
             BindingContext = this;
         }
 
-        async void Save_Clicked(object sender, EventArgs e)
+        public Item Item { get; set; }
+
+        private async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "AddItem", Item);
+
+            var api = new ApiService().HseSupporterApi;
+            await api.SaveProblem(ApiService.TokenHeader, new Dictionary<string, object>
+            {
+                {"title", Title.Text},
+                {"description", Description.Text},
+                {"status", "O"}
+            });
             await Navigation.PopModalAsync();
         }
 
-        async void Cancel_Clicked(object sender, EventArgs e)
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopModalAsync();
         }

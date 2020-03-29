@@ -1,5 +1,4 @@
-﻿using HSESupporter.Services;
-using HSESupporter.Views;
+﻿using HSESupporter.Views;
 using Xamarin.Forms;
 
 namespace HSESupporter
@@ -10,7 +9,6 @@ namespace HSESupporter
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new NavigationPage(new ItemsPage());
         }
 

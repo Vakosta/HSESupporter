@@ -1,14 +1,17 @@
 using Refit;
+using Xamarin.Essentials;
 
 namespace HSESupporter.Services
 {
     public class ApiService
     {
-        public IHseSupporterApi hseSupporterApi;
+        public readonly IHseSupporterApi HseSupporterApi;
 
         public ApiService()
         {
-            hseSupporterApi = RestService.For<IHseSupporterApi>("https://hse-supporter.herokuapp.com");
+            HseSupporterApi = RestService.For<IHseSupporterApi>("https://hse-supporter.herokuapp.com");
         }
+
+        public static string TokenHeader => $"Token {Preferences.Get("token", "")}";
     }
 }

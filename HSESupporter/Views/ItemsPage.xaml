@@ -25,7 +25,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10">
-                            <Label Text="{Binding Text}" d:Text="{Binding .}" LineBreakMode="NoWrap"
+                            <Label Text="{Binding Title}" d:Text="{Binding .}" LineBreakMode="NoWrap"
                                    Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
                             <Label Text="{Binding Description}" d:Text="Описание проблемы" LineBreakMode="NoWrap"
                                    Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />

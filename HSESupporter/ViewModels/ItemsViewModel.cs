@@ -3,7 +3,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using HSESupporter.Models;
-using HSESupporter.Views;
+using HSESupporter.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HSESupporter.ViewModels
@@ -13,18 +14,11 @@ namespace HSESupporter.ViewModels
         public ItemsViewModel()
         {
             Title = "Проблемы";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<Problem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
-            {
-                var newItem = item;
-                Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
-            });
         }
 
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<Problem> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         private async Task ExecuteLoadItemsCommand()
@@ -37,7 +31,9 @@ namespace HSESupporter.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+
+                var api = new ApiService().HseSupporterApi;
+                var items = await api.GetProblems($"Token {Preferences.Get("token", "")}");
                 foreach (var item in items) Items.Add(item);
             }
             catch (Exception ex)
