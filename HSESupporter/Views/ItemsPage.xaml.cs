@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using HSESupporter.Models;
 using HSESupporter.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HSESupporter.Views
@@ -40,6 +41,9 @@ namespace HSESupporter.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            if (Preferences.Get("token", "").Equals(""))
+                Navigation.PushModalAsync(new LoginPage());
 
             if (_viewModel.Items.Count == 0)
                 _viewModel.LoadItemsCommand.Execute(null);

@@ -11,7 +11,7 @@ namespace HSESupporter
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new LoginPage();
+            MainPage = new NavigationPage(new ItemsPage());
         }
 
         protected override void OnStart()
