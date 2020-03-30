@@ -32,7 +32,7 @@ namespace HSESupporter.Views
             MessagingCenter.Send(this, "AddItem", Item);
 
             var api = new ApiService().HseSupporterApi;
-            await api.SaveProblem(ApiService.TokenHeader, new Dictionary<string, object>
+            await api.SaveProblem(new Dictionary<string, object>
             {
                 {"title", Title.Text},
                 {"description", Description.Text},

@@ -36,7 +36,7 @@ namespace HSESupporter.Views
 
                 Preferences.Set("token", result.Token);
 
-                await Navigation.PushModalAsync(new ItemsPage());
+                await Navigation.PushModalAsync(new MainPage());
             }
             catch (Exception ex)
             {

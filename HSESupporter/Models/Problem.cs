@@ -5,6 +5,7 @@ namespace HSESupporter.Models
 {
     public class Problem : IModel
     {
+        [JsonProperty("id")] public int Id { get; set; }
         [JsonProperty("author")] public string Author { get; set; }
         [JsonProperty("title")] public string Title { get; set; }
         [JsonProperty("description")] public string Description { get; set; }
@@ -12,10 +13,11 @@ namespace HSESupporter.Models
         [JsonProperty("created_at")] public string CreatedAt { get; set; }
         [JsonProperty("updated_at")] public string UpdatedAt { get; set; }
 
-        public Dictionary<string, string> GetDictionaryParams()
+        public Dictionary<string, object> GetDictionaryParams()
         {
-            return new Dictionary<string, string>
+            return new Dictionary<string, object>
             {
+                {"id", Id},
                 {"name", Author},
                 {"title", Title},
                 {"description", Description},

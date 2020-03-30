@@ -30,6 +30,11 @@
                             <Label Text="{Binding Description}" d:Text="Описание проблемы" LineBreakMode="NoWrap"
                                    Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
                         </StackLayout>
+                        <ViewCell.ContextActions>
+                            <MenuItem Clicked="MenuItem_OnDelete"
+                                      CommandParameter="{Binding .}"
+                                      Text="Удалить" IsDestructive="True" />
+                        </ViewCell.ContextActions>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

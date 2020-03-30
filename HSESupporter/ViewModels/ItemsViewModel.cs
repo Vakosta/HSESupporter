@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using HSESupporter.Models;
 using HSESupporter.Services;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HSESupporter.ViewModels
@@ -33,7 +32,7 @@ namespace HSESupporter.ViewModels
                 Items.Clear();
 
                 var api = new ApiService().HseSupporterApi;
-                var items = await api.GetProblems($"Token {Preferences.Get("token", "")}");
+                var items = await api.GetProblems();
                 foreach (var item in items) Items.Add(item);
             }
             catch (Exception ex)

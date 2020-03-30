@@ -5,16 +5,18 @@ namespace HSESupporter.Models
 {
     public class Message : IModel
     {
+        [JsonProperty("id")] public int Id { get; set; }
         [JsonProperty("author")] public string Author { get; set; }
         [JsonProperty("text")] public string Text { get; set; }
         [JsonProperty("is_read")] public string IsRead { get; set; }
         [JsonProperty("created_at")] public string CreatedAt { get; set; }
         [JsonProperty("updated_at")] public string UpdatedAt { get; set; }
 
-        public Dictionary<string, string> GetDictionaryParams()
+        public Dictionary<string, object> GetDictionaryParams()
         {
-            return new Dictionary<string, string>
+            return new Dictionary<string, object>
             {
+                {"id", Id},
                 {"name", Author},
                 {"text", Text},
                 {"is_read", IsRead},

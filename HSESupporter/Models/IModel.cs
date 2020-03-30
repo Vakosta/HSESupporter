@@ -4,6 +4,6 @@ namespace HSESupporter.Models
 {
     public interface IModel
     {
-        Dictionary<string, string> GetDictionaryParams();
+        Dictionary<string, object> GetDictionaryParams();
     }
 }

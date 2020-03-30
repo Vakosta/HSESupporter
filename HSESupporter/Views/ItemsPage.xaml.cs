@@ -1,14 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using HSESupporter.Models;
+using HSESupporter.Services;
 using HSESupporter.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace HSESupporter.Views
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class ItemsPage : ContentPage
     {
@@ -47,6 +46,24 @@ namespace HSESupporter.Views
 
             if (_viewModel.Items.Count == 0)
                 _viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private async void MenuItem_OnDelete(object sender, EventArgs e)
+        {
+            try
+            {
+                var problem = ((MenuItem) sender).BindingContext as Problem;
+                var api = new ApiService().HseSupporterApi;
+
+                if (problem == null) return;
+                await api.DeleteProblem(problem.Id);
+
+                ItemsListView.BeginRefresh();
+            }
+            catch (Exception ex)
+            {
+                // Empty
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace HSESupporter
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ItemsPage());
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

@@ -5,6 +5,7 @@ using Refit;
 
 namespace HSESupporter.Services
 {
+    [Headers("Authorization: Token")]
     public interface IHseSupporterApi
     {
         [Post("/api/auth/token/login")]
@@ -12,17 +13,19 @@ namespace HSESupporter.Services
             Dictionary<string, object> data);
 
         [Get("/dormitories/")]
-        Task<List<Dormitory>> GetDormitories([Header("Authorization")] string authorization);
+        Task<List<Dormitory>> GetDormitories();
 
         [Get("/problems/")]
-        Task<List<Problem>> GetProblems([Header("Authorization")] string authorization);
+        Task<List<Problem>> GetProblems();
 
         [Get("/messages/")]
-        Task<List<Message>> GetMessages([Header("Authorization")] string authorization);
+        Task<List<Message>> GetMessages();
 
         [Post("/problems/")]
-        Task<List<Problem>> SaveProblem([Header("Authorization")] string authorization,
-            [Body(BodySerializationMethod.UrlEncoded)]
+        Task<List<Problem>> SaveProblem([Body(BodySerializationMethod.UrlEncoded)]
             Dictionary<string, object> data);
+
+        [Delete("/problems/{id}/")]
+        Task<Problem> DeleteProblem(int id);
     }
 }
