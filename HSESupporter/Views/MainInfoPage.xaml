@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HSESupporter.Views.Elements"
+             xmlns:viewmodels="clr-namespace:HSESupporter.ViewModels"
+             x:Class="HSESupporter.Views.MainInfoPage">
+    <ContentPage.BindingContext>
+        <viewmodels:MainInfoViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout x:Name="StackImportantMessages" Padding="8,8,8,0">
+                <local:ImportantNotice />
+            </StackLayout>
+            <CarouselView ItemsSource="{Binding Notices}"
+                          PeekAreaInsets="30">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame HasShadow="True"
+                                   BorderColor="DarkGray"
+                                   CornerRadius="5"
+                                   Margin="15"
+                                   HeightRequest="80"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="Center">
+                                <StackLayout>
+                                    <Label Text="{Binding Title}"
+                                           FontAttributes="Bold"
+                                           FontSize="Large"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                    <Label Text="{Binding Description}"
+                                           FontAttributes="Italic"
+                                           HorizontalOptions="Center"
+                                           MaxLines="5"
+                                           LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
