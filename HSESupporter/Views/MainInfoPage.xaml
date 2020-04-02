@@ -4,44 +4,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:HSESupporter.Views.Elements"
              xmlns:viewmodels="clr-namespace:HSESupporter.ViewModels"
+             Title="{Binding Title}"
              x:Class="HSESupporter.Views.MainInfoPage">
     <ContentPage.BindingContext>
         <viewmodels:MainInfoViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout x:Name="StackImportantMessages" Padding="8,8,8,0">
-                <local:ImportantNotice />
-            </StackLayout>
-            <CarouselView ItemsSource="{Binding Notices}"
-                          PeekAreaInsets="30">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Frame HasShadow="True"
-                                   BorderColor="DarkGray"
-                                   CornerRadius="5"
-                                   Margin="15"
-                                   HeightRequest="80"
-                                   HorizontalOptions="FillAndExpand"
-                                   VerticalOptions="Center">
+        <RefreshView IsRefreshing="{Binding IsBusy}"
+                     Command="{Binding RefreshCommand}">
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout VerticalOptions="Fill"
+                                 x:Name="StackImportantMessages"
+                                 Padding="8,8,8,0">
+                        <!--<local:ImportantNotice />-->
+                    </StackLayout>
+                    <CarouselView ItemsSource="{Binding Notices}"
+                                  PeekAreaInsets="26" VerticalOptions="Center"
+                                  HeightRequest="215">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
                                 <StackLayout>
-                                    <Label Text="{Binding Title}"
-                                           FontAttributes="Bold"
-                                           FontSize="Large"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center" />
-                                    <Label Text="{Binding Description}"
-                                           FontAttributes="Italic"
-                                           HorizontalOptions="Center"
-                                           MaxLines="5"
-                                           LineBreakMode="TailTruncation" />
+                                    <Frame HasShadow="False"
+                                           BorderColor="DarkGray"
+                                           CornerRadius="5"
+                                           Margin="15, 5"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="Center">
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}"
+                                                   FontAttributes="Bold"
+                                                   FontSize="Large"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+                                            <Label Text="{Binding Description}"
+                                                   FontAttributes="Italic"
+                                                   HorizontalOptions="Center"
+                                                   MaxLines="5"
+                                                   LineBreakMode="TailTruncation" />
+                                        </StackLayout>
+                                    </Frame>
                                 </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
-        </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

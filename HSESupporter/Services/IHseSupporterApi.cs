@@ -18,6 +18,9 @@ namespace HSESupporter.Services
         [Get("/problems/")]
         Task<List<Problem>> GetProblems();
 
+        [Get("/notices/")]
+        Task<List<Notice>> GetNotices();
+
         [Get("/messages/")]
         Task<List<Message>> GetMessages();
 

@@ -1,40 +1,44 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using HSESupporter.Models;
+using HSESupporter.Services;
+using Xamarin.Forms;
 
 namespace HSESupporter.ViewModels
 {
-    public class MainInfoViewModel
+    public sealed class MainInfoViewModel : BaseViewModel
     {
-        private readonly IList<Notice> _source;
-
         public MainInfoViewModel()
         {
-            _source = new List<Notice>();
-            InitNoticeCollection();
+            Title = "Главная";
+            Notices = new ObservableCollection<Notice>();
+            RefreshCommand = new Command(InitNoticeCollection);
         }
 
-        public ObservableCollection<Notice> Notices { get; private set; }
+        public Command RefreshCommand { get; set; }
 
-        private void InitNoticeCollection()
+        public List<Notice> AllNotices { get; private set; }
+        public ObservableCollection<Notice> Notices { get; }
+        public event EventHandler Load;
+
+        public async void InitNoticeCollection()
         {
-            _source.Add(new Notice
-            {
-                Title = "Kek",
-                Description = "Cheburek"
-            });
-            _source.Add(new Notice
-            {
-                Title = "Lol",
-                Description = "Arbidol"
-            });
-            _source.Add(new Notice
-            {
-                Title = "Gi",
-                Description = "Gigigigi"
-            });
+            Notices.Clear();
 
-            Notices = new ObservableCollection<Notice>(_source);
+            var api = new ApiService().HseSupporterApi;
+            AllNotices = await api.GetNotices();
+
+            foreach (var notice in AllNotices.Where(notice => !notice.IsImportant))
+                Notices.Add(notice);
+            IsBusy = false;
+            OnLoad();
+        }
+
+        public void OnLoad()
+        {
+            Load?.Invoke(this, EventArgs.Empty);
         }
     }
 }

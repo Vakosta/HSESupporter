@@ -12,7 +12,7 @@ namespace HSESupporter.ViewModels
     {
         public ItemsViewModel()
         {
-            Title = "Проблемы";
+            Title = "Обращения";
             Items = new ObservableCollection<Problem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
