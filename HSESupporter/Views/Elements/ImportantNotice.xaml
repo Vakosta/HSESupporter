@@ -6,12 +6,13 @@
     <Frame CornerRadius="10"
            BorderColor="OrangeRed"
            Padding="0"
+           HasShadow="False"
            VerticalOptions="Center"
            HorizontalOptions="FillAndExpand">
         <StackLayout Orientation="Horizontal">
             <Image HeightRequest="50"
                    WidthRequest="50"
-                   BackgroundColor="AliceBlue"
+                   Source="fire.png"
                    Margin="10,10,0,10" />
             <Label
                 x:Name="Title"

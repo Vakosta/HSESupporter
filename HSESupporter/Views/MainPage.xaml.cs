@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace HSESupporter.Views
 {
@@ -12,7 +11,10 @@ namespace HSESupporter.Views
     {
         public MainPage()
         {
-            InitializeComponent();
+            if (Preferences.Get("token", "").Equals(""))
+                Navigation.PushModalAsync(new LoginPage());
+            else
+                InitializeComponent();
         }
     }
 }

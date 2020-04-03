@@ -8,6 +8,7 @@ namespace HSESupporter.Services
     [Headers("Authorization: Token")]
     public interface IHseSupporterApi
     {
+        [Headers("Authorization")]
         [Post("/api/auth/token/login")]
         Task<AuthResult> Login([Body(BodySerializationMethod.UrlEncoded)]
             Dictionary<string, object> data);

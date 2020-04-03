@@ -16,7 +16,8 @@ namespace HSESupporter.Views
 
             if (!(BindingContext is MainInfoViewModel vm)) return;
             vm.Load += InitMainNoticeCollection;
-            vm.InitNoticeCollection();
+            //vm.InitNoticeCollection();
+            vm.IsBusy = true;
         }
 
         private void InitMainNoticeCollection(object sender, EventArgs e)
