@@ -14,6 +14,16 @@ namespace HSESupporter.Views.Elements
                 Margin = new Thickness(-8, 0, 42, 0);
         }
 
+        public Message()
+        {
+        }
+
+        public Label PAuthor
+        {
+            get => Author;
+            set => Author = value;
+        }
+
         public Label PText
         {
             get => Title;

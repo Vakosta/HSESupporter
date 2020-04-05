@@ -12,6 +12,12 @@
            HorizontalOptions="FillAndExpand">
         <StackLayout Orientation="Vertical">
             <Label
+                x:Name="Author"
+                Text="Пётр Игоревич"
+                HorizontalOptions="Start"
+                TextColor="MidnightBlue"
+                FontSize="13" />
+            <Label
                 x:Name="Title"
                 Text="Что-то произошло в ванной, поднимитесь на второй этаж, это важно!"
                 VerticalOptions="Center"

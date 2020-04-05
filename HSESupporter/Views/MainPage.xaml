@@ -25,6 +25,16 @@
                 <views:ItemsPage />
             </x:Arguments>
         </NavigationPage>
+        <NavigationPage Title="Беседа">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="messages.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:ChatPage />
+            </x:Arguments>
+        </NavigationPage>
         <NavigationPage Title="О приложении">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">

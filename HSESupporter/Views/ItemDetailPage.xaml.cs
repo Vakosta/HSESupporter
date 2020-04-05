@@ -23,7 +23,7 @@ namespace HSESupporter.Views
 
             foreach (var message in _viewModel.Item.Messages)
                 Messages.Children.Add(new Message(message.IsFromStudent)
-                    {PText = {Text = message.Text}, PTime = {Text = "18:18"}});
+                    {PAuthor = {Text = message.Author}, PText = {Text = message.Text}, PTime = {Text = "18:18"}});
         }
 
         public ItemDetailPage()
@@ -50,7 +50,7 @@ namespace HSESupporter.Views
                 MessageEditor.Text = "";
 
                 Messages.Children.Add(new Message(true)
-                    {PText = {Text = text}, PTime = {Text = "18:18"}});
+                    {PAuthor = {Text = "..."}, PText = {Text = text}, PTime = {Text = "18:18"}});
 
                 var message = new Models.Message
                 {
