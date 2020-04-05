@@ -8,6 +8,7 @@ namespace HSESupporter.Models
         [JsonProperty("id")] public int Id { get; set; }
         [JsonProperty("name")] public string Name { get; set; }
         [JsonProperty("address")] public string Address { get; set; }
+        [JsonProperty("messages")] public List<Message> Messages { get; set; }
 
         public Dictionary<string, object> GetDictionaryParams()
         {
@@ -15,7 +16,8 @@ namespace HSESupporter.Models
             {
                 {"id", Id},
                 {"name", Name},
-                {"address", Address}
+                {"address", Address},
+                {"messages", Messages}
             };
         }
     }

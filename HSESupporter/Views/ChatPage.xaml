@@ -2,20 +2,22 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:models="clr-namespace:HSESupporter.Models;assembly=HSESupporter"
-             xmlns:elements="clr-namespace:HSESupporter.Views.Elements;assembly=HSESupporter"
+             xmlns:viewModels="clr-namespace:HSESupporter.ViewModels;assembly=HSESupporter"
              Title="{Binding Title}"
              x:Class="HSESupporter.Views.ChatPage">
     <ContentPage.BindingContext>
-        <models:ChatViewModel />
+        <viewModels:ChatViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Fill"
-                     x:Name="Messages"
-                     Padding="8,8,8,0">
-            <elements:Message Margin="42,0,-8,0" />
+        <ScrollView
+            x:Name="ScrollView">
+            <StackLayout VerticalOptions="Fill"
+                         x:Name="Messages"
+                         Padding="8,8,8,0">
+                <!--<elements:Message Margin="42,0,-8,0" />
             <elements:Message Margin="-8,0,42,0" />
-            <elements:Message Margin="42,0,-8,0" />
-        </StackLayout>
+            <elements:Message Margin="42,0,-8,0" />-->
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -16,6 +16,9 @@ namespace HSESupporter.Services
         [Get("/dormitories/")]
         Task<List<Dormitory>> GetDormitories();
 
+        [Get("/dormitories/{id}/")]
+        Task<Dormitory> GetDormitory(int id);
+
         [Get("/problems/")]
         Task<List<Problem>> GetProblems();
 

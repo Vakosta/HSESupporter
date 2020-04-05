@@ -1,5 +1,6 @@
-using System;
-using HSESupporter.ViewModels;
+using System.Threading.Tasks;
+using HSESupporter.Services;
+using HSESupporter.Views.Elements;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,14 +13,31 @@ namespace HSESupporter.Views
         {
             InitializeComponent();
 
-            if (!(BindingContext is MainInfoViewModel vm)) return;
-            vm.Load += InitMainNoticeCollection;
-            //vm.InitNoticeCollection();
-            vm.IsBusy = true;
+            InitMainNoticeCollection();
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    await ScrollView.ScrollToAsync(0, Messages.Height, true);
+                }
+                else
+                {
+                    await Task.Delay(10); //UI will be updated by Xamarin
+                    await ScrollView.ScrollToAsync(Messages, ScrollToPosition.End, true);
+                }
+            });
         }
 
-        private void InitMainNoticeCollection(object sender, EventArgs e)
+        private async void InitMainNoticeCollection()
         {
+            var api = new ApiService().HseSupporterApi;
+            var result = await api.GetDormitory(1);
+            var messages = result.Messages;
+
+            foreach (var message in messages)
+                Messages.Children.Add(new Message(true)
+                    {PAuthor = {Text = message.Author}, PText = {Text = message.Text}, PTime = {Text = "18:18"}});
         }
     }
 }
