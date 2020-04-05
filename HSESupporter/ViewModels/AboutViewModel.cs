@@ -9,7 +9,7 @@ namespace HSESupporter.ViewModels
         public AboutViewModel()
         {
             Title = "О приложении";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://xamarin.com"));
+            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://www.hse.ru/"));
         }
 
         public ICommand OpenWebCommand { get; }
