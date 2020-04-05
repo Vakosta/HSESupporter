@@ -12,6 +12,7 @@ namespace HSESupporter.Models
         [JsonProperty("status")] public string Status { get; set; }
         [JsonProperty("created_at")] public string CreatedAt { get; set; }
         [JsonProperty("updated_at")] public string UpdatedAt { get; set; }
+        [JsonProperty("messages")] public List<Message> Messages { get; set; }
 
         public Dictionary<string, object> GetDictionaryParams()
         {
@@ -23,7 +24,8 @@ namespace HSESupporter.Models
                 {"description", Description},
                 {"status", Status},
                 {"created_at", CreatedAt},
-                {"updated_at", UpdatedAt}
+                {"updated_at", UpdatedAt},
+                {"message", Messages}
             };
         }
     }

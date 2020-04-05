@@ -1,7 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using HSESupporter.Models;
+using HSESupporter.Services;
 using HSESupporter.ViewModels;
 using Xamarin.Forms;
+using Message = HSESupporter.Views.Elements.Message;
 
 namespace HSESupporter.Views
 {
@@ -17,6 +20,10 @@ namespace HSESupporter.Views
             InitializeComponent();
 
             BindingContext = _viewModel = viewModel;
+
+            foreach (var message in _viewModel.Item.Messages)
+                Messages.Children.Add(new Message(message.IsFromStudent)
+                    {PText = {Text = message.Text}, PTime = {Text = "18:18"}});
         }
 
         public ItemDetailPage()
@@ -31,6 +38,36 @@ namespace HSESupporter.Views
 
             _viewModel = new ItemDetailViewModel(item);
             BindingContext = _viewModel;
+        }
+
+        private async void Button_OnClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageEditor.Text.Equals("")) return;
+
+                var text = MessageEditor.Text;
+                MessageEditor.Text = "";
+
+                Messages.Children.Add(new Message(true)
+                    {PText = {Text = text}, PTime = {Text = "18:18"}});
+
+                var message = new Models.Message
+                {
+                    Author = "",
+                    IsRead = false,
+                    IsFromStudent = true,
+                    Text = text,
+                    Problem = _viewModel.Item.Id
+                };
+
+                var api = new ApiService().HseSupporterApi;
+                await api.SendMessage(message.GetDictionaryParams());
+            }
+            catch (Exception ex)
+            {
+                // Nothing
+            }
         }
     }
 }

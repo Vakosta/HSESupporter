@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HSESupporter.Views.Elements.Message">
+    <Frame CornerRadius="10"
+           BorderColor="CadetBlue"
+           Padding="8"
+           BackgroundColor="AliceBlue"
+           HasShadow="False"
+           VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand">
+        <StackLayout Orientation="Vertical">
+            <Label
+                x:Name="Title"
+                Text="Что-то произошло в ванной, поднимитесь на второй этаж, это важно!"
+                VerticalOptions="Center"
+                Margin="0,0,12,0"
+                FontSize="14" />
+            <Label
+                x:Name="Time"
+                Text="12:54"
+                HorizontalOptions="End"
+                Margin="0,0,12,0"
+                TextColor="Gray"
+                FontSize="13" />
+        </StackLayout>
+    </Frame>
+</ContentView>
