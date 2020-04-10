@@ -11,12 +11,23 @@
     <ContentPage.Content>
         <ScrollView
             x:Name="ScrollView">
-            <StackLayout VerticalOptions="Fill"
-                         x:Name="Messages"
-                         Padding="8,8,8,0">
-                <!--<elements:Message Margin="42,0,-8,0" />
-            <elements:Message Margin="-8,0,42,0" />
-            <elements:Message Margin="42,0,-8,0" />-->
+            <StackLayout>
+                <StackLayout VerticalOptions="Fill"
+                             x:Name="Messages"
+                             Padding="12,8,12,0">
+                    <!--<elements:Message Margin="42,0,-8,0" />
+                <elements:Message Margin="-8,0,42,0" />
+                <elements:Message Margin="42,0,-8,0" />-->
+                </StackLayout>
+                <StackLayout BackgroundColor="Black"
+                             Margin="8, 12, 8, 8"
+                             Padding="1">
+                    <Editor
+                        x:Name="MessageEditor"
+                        AutoSize="TextChanges"
+                        Placeholder="Введите сообщение..." />
+                </StackLayout>
+                <Button Text="Отпр." HorizontalOptions="End" Margin="0,-25,8,0" Clicked="Button_OnClicked" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

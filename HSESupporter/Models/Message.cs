@@ -12,11 +12,12 @@ namespace HSESupporter.Models
         [JsonProperty("is_from_student")] public bool IsFromStudent { get; set; }
         [JsonProperty("created_at")] public string CreatedAt { get; set; }
         [JsonProperty("updated_at")] public string UpdatedAt { get; set; }
-        [JsonProperty("problem")] public int Problem { get; set; }
+        [JsonProperty("problem")] public int? Problem { get; set; }
+        [JsonProperty("dormitory")] public int? Dormitory { get; set; }
 
         public Dictionary<string, object> GetDictionaryParams()
         {
-            return new Dictionary<string, object>
+            var values = new Dictionary<string, object>
             {
                 {"id", Id},
                 {"name", Author},
@@ -24,9 +25,13 @@ namespace HSESupporter.Models
                 {"is_read", IsRead},
                 {"is_from_student", IsFromStudent},
                 {"created_at", CreatedAt},
-                {"updated_at", UpdatedAt},
-                {"problem", Problem}
+                {"updated_at", UpdatedAt}
             };
+
+            if (Problem != 0) values.Add("problem", Problem);
+            if (Dormitory != 0) values.Add("dormitory", Dormitory);
+
+            return values;
         }
     }
 }
