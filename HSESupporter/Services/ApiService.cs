@@ -14,7 +14,7 @@ namespace HSESupporter.Services
             {
                 AuthorizationHeaderValueGetter = () => Task.FromResult(TokenHeader)
             };
-            HseSupporterApi = RestService.For<IHseSupporterApi>("http://127.0.0.1:8000", refitSettings);
+            HseSupporterApi = RestService.For<IHseSupporterApi>("https://hse-supporter.herokuapp.com", refitSettings);
         }
 
         public static string TokenHeader => $"{Preferences.Get("token", "")}";

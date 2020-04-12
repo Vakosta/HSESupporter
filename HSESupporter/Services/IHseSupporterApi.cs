@@ -9,8 +9,13 @@ namespace HSESupporter.Services
     public interface IHseSupporterApi
     {
         [Headers("Authorization")]
-        [Post("/api/auth/token/login")]
+        [Post("/auth/register/")]
         Task<AuthResult> Login([Body(BodySerializationMethod.UrlEncoded)]
+            Dictionary<string, object> data);
+
+        [Headers("Authorization")]
+        [Post("/auth/register/confirm-email/")]
+        Task<AuthResult> LoginConfirm([Body(BodySerializationMethod.UrlEncoded)]
             Dictionary<string, object> data);
 
         [Get("/dormitories/")]

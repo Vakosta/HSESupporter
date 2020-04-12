@@ -10,10 +10,18 @@
                    FontSize="30"
                    FontAttributes="Bold"
                    TextColor="#5B69FF" />
-            <Entry x:Name="Login" Placeholder="Логин" Margin="12,0" />
-            <Entry x:Name="Password" Placeholder="Пароль" IsPassword="True" Margin="12,0" />
+            <Label HorizontalTextAlignment="Center"
+                   Text="Введите ваш Email и мы отправим на него код подтверждения."
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="DarkGray" />
+            
+            <Entry x:Name="Login" Placeholder="Email" Margin="12,0"  />
+            <Entry x:Name="Code" Placeholder="Код подтверждения" Margin="12,0" IsVisible="False" />
+            
             <Button Text="Войти" FontSize="22" Clicked="Button_OnClicked" />
             <ActivityIndicator x:Name="LoadingIndicator" IsRunning="False" />
+            
             <Label x:Name="ResultText" HorizontalTextAlignment="Center"
                    Text="Успешно"
                    FontSize="20"

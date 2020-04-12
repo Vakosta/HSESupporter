@@ -10,6 +10,8 @@ namespace HSESupporter.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        private bool _isConfirm;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -19,24 +21,51 @@ namespace HSESupporter.Views
         {
             try
             {
-                var api = new ApiService().HseSupporterApi;
-
-                var values = new Dictionary<string, object>
+                if (!_isConfirm)
                 {
-                    {"username", Login.Text},
-                    {"password", Password.Text}
-                };
+                    var api = new ApiService().HseSupporterApi;
 
-                LoadingIndicator.IsRunning = true;
-                var result = await api.Login(values);
-                LoadingIndicator.IsRunning = false;
+                    var values = new Dictionary<string, object>
+                    {
+                        {"email", Login.Text},
+                    };
 
-                ResultText.IsVisible = true;
-                ResultText.Text = "Успешный вход!";
+                    LoadingIndicator.IsRunning = true;
+                    var result = await api.Login(values);
+                    LoadingIndicator.IsRunning = false;
 
-                Preferences.Set("token", result.Token);
+                    ResultText.IsVisible = true;
+                    ResultText.Text = "Проверочный код отправлен!";
 
-                await Navigation.PushModalAsync(new MainPage());
+                    Code.IsVisible = true;
+
+                    _isConfirm = true;
+                }
+                else
+                {
+                    var api = new ApiService().HseSupporterApi;
+
+                    var values = new Dictionary<string, object>
+                    {
+                        {"email", Login.Text},
+                        {"code", Code.Text}
+                    };
+
+                    LoadingIndicator.IsRunning = true;
+                    var result = await api.LoginConfirm(values);
+                    LoadingIndicator.IsRunning = false;
+
+                    ResultText.IsVisible = true;
+                    ResultText.Text = "Успешный вход!";
+
+                    Code.IsVisible = true;
+
+                    Preferences.Set("token", result.Token);
+                    Preferences.Set("name", result.Profile.Fio);
+                    Preferences.Set("info", result.Profile.Info);
+
+                    await Navigation.PushModalAsync(new MainPage());
+                }
             }
             catch (Exception ex)
             {

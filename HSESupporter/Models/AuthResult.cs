@@ -4,6 +4,7 @@ namespace HSESupporter.Models
 {
     public class AuthResult
     {
-        [JsonProperty("auth_token")] public string Token { get; set; }
+        [JsonProperty("token")] public string Token { get; set; }
+        [JsonProperty("profile")] public Profile Profile { get; set; }
     }
 }
