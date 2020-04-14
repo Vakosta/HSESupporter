@@ -61,10 +61,14 @@ namespace HSESupporter.Views
                     Code.IsVisible = true;
 
                     Preferences.Set("token", result.Token);
+                    Preferences.Set("is_accept", result.IsAccept);
                     Preferences.Set("name", result.Profile.Fio);
                     Preferences.Set("info", result.Profile.Info);
 
-                    await Navigation.PushModalAsync(new MainPage());
+                    if (result.IsAccept)
+                        await Navigation.PushModalAsync(new MainPage());
+                    else
+                        await Navigation.PushModalAsync(new WaitPage());
                 }
             }
             catch (Exception ex)

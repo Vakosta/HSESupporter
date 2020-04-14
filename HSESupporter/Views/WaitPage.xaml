@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HSESupporter.Views.WaitPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+
+            <Label Text="Подождите немного"
+                   FontSize="26"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center" />
+            <Label Text="Сейчас ваш аккаунт проверяет администрация."
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="16" />
+            <Label Text="Обычно это длится не более суток."
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="14" />
+            <Button
+                Clicked="CheckButton_OnClicked"
+                HorizontalOptions="Center"
+                FontSize="18"
+                Text="Проверить" />
+
+            <ActivityIndicator x:Name="LoadingIndicator"
+                               IsRunning="False" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

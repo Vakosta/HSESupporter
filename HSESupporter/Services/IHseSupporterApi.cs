@@ -18,6 +18,9 @@ namespace HSESupporter.Services
         Task<AuthResult> LoginConfirm([Body(BodySerializationMethod.UrlEncoded)]
             Dictionary<string, object> data);
 
+        [Get("/auth/accept-status/")]
+        Task<AuthResult> CheckAcceptStatus();
+
         [Get("/dormitories/")]
         Task<List<Dormitory>> GetDormitories();
 

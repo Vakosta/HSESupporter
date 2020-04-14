@@ -11,7 +11,9 @@ namespace HSESupporter.Views
     {
         public MainPage()
         {
-            if (Preferences.Get("token", "").Equals(""))
+            if (Preferences.Get("is_accept", true).Equals(false))
+                Navigation.PushModalAsync(new WaitPage());
+            else if (Preferences.Get("token", "").Equals(""))
                 Navigation.PushModalAsync(new LoginPage());
             else
                 InitializeComponent();
