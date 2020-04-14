@@ -66,7 +66,10 @@ namespace HSESupporter.Views
 
             foreach (var message in messages)
                 Messages.Children.Add(new Message(true)
-                    {PAuthor = {Text = message.Author}, PText = {Text = message.Text}, PTime = {Text = "18:18"}});
+                {
+                    PAuthor = {Text = $"{message.AuthorFirstName} {message.AuthorLastName}"},
+                    PText = {Text = message.Text}, PTime = {Text = "18:18"}
+                });
         }
 
         private async void Button_OnClicked(object sender, EventArgs e)

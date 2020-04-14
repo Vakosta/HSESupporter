@@ -23,7 +23,10 @@ namespace HSESupporter.Views
 
             foreach (var message in _viewModel.Item.Messages)
                 Messages.Children.Add(new Message(message.IsFromStudent)
-                    {PAuthor = {Text = message.Author}, PText = {Text = message.Text}, PTime = {Text = "18:18"}});
+                {
+                    PAuthor = {Text = $"{message.AuthorFirstName} {message.AuthorLastName}"},
+                    PText = {Text = message.Text}, PTime = {Text = "18:18"}
+                });
         }
 
         public ItemDetailPage()
@@ -54,7 +57,7 @@ namespace HSESupporter.Views
 
                 var message = new Models.Message
                 {
-                    Author = "",
+                    Author = 1,
                     IsRead = false,
                     IsFromStudent = true,
                     Text = text,

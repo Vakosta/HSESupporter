@@ -6,7 +6,9 @@ namespace HSESupporter.Models
     public class Message : IModel
     {
         [JsonProperty("id")] public int Id { get; set; }
-        [JsonProperty("author")] public string Author { get; set; }
+        [JsonProperty("author")] public int Author { get; set; }
+        [JsonProperty("author_first_name")] public string AuthorFirstName { get; set; }
+        [JsonProperty("author_last_name")] public string AuthorLastName { get; set; }
         [JsonProperty("text")] public string Text { get; set; }
         [JsonProperty("is_read")] public bool IsRead { get; set; }
         [JsonProperty("is_from_student")] public bool IsFromStudent { get; set; }
