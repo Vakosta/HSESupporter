@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using HSESupporter.Services;
 using HSESupporter.ViewModels;
 using HSESupporter.Views.Elements;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -65,7 +66,8 @@ namespace HSESupporter.Views
             var messages = result.Messages;
 
             foreach (var message in messages)
-                Messages.Children.Add(new Message(true)
+                Messages.Children.Add(new Message(Preferences.Get("id", 0)
+                    .Equals(message.Author))
                 {
                     PAuthor = {Text = $"{message.AuthorFirstName} {message.AuthorLastName}"},
                     PText = {Text = message.Text}, PTime = {Text = "18:18"}
@@ -81,8 +83,9 @@ namespace HSESupporter.Views
                 var text = MessageEditor.Text;
                 MessageEditor.Text = "";
 
+                var fio = Preferences.Get("name", "").Split(' ');
                 Messages.Children.Add(new Message(true)
-                    {PAuthor = {Text = "..."}, PText = {Text = text}, PTime = {Text = "18:18"}});
+                    {PAuthor = {Text = $"{fio[1]} {fio[0]}"}, PText = {Text = text}, PTime = {Text = "18:18"}});
 
                 var message = new Models.Message
                 {
