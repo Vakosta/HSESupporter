@@ -24,11 +24,20 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Title}" d:Text="{Binding .}" LineBreakMode="NoWrap"
-                                   Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-                            <Label Text="{Binding Description}" d:Text="Описание проблемы" LineBreakMode="NoWrap"
-                                   Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                        <StackLayout Orientation="Horizontal" Padding="10" HorizontalOptions="FillAndExpand">
+                            <StackLayout>
+                                <Label Text="{Binding Title}" d:Text="{Binding .}" LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+                                <Label Text="{Binding Description}" d:Text="Описание проблемы" LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                            </StackLayout>
+
+                            <Label Text="{Binding CreatedAtBeauty}" d:Text="{Binding .}"
+                                   LineBreakMode="NoWrap"
+                                   HorizontalOptions="EndAndExpand"
+                                   TextColor="Gray"
+                                   Style="{DynamicResource ListItemTextStyle}"
+                                   FontSize="13" />
                         </StackLayout>
                         <ViewCell.ContextActions>
                             <MenuItem Clicked="MenuItem_OnDelete"

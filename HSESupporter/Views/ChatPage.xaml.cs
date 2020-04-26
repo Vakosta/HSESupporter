@@ -70,7 +70,7 @@ namespace HSESupporter.Views
                     .Equals(message.Author))
                 {
                     PAuthor = {Text = $"{message.AuthorFirstName} {message.AuthorLastName}"},
-                    PText = {Text = message.Text}, PTime = {Text = "18:18"}
+                    PText = {Text = message.Text}, PTime = {Text = message.CreatedAt.GetDateTimeText()}
                 });
         }
 
@@ -85,7 +85,10 @@ namespace HSESupporter.Views
 
                 var fio = Preferences.Get("name", "").Split(' ');
                 Messages.Children.Add(new Message(true)
-                    {PAuthor = {Text = $"{fio[1]} {fio[0]}"}, PText = {Text = text}, PTime = {Text = "18:18"}});
+                {
+                    PAuthor = {Text = $"{fio[1]} {fio[0]}"}, PText = {Text = text},
+                    PTime = {Text = DateTime.Now.ToString("HH:mm")}
+                });
 
                 var message = new Models.Message
                 {

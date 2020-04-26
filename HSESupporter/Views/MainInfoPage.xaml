@@ -21,7 +21,7 @@
                     </StackLayout>
                     <CarouselView ItemsSource="{Binding Notices}"
                                   PeekAreaInsets="26" VerticalOptions="Center"
-                                  HeightRequest="215">
+                                  HeightRequest="230">
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
@@ -40,6 +40,12 @@
                                             <Label Text="{Binding Description}"
                                                    FontAttributes="Italic"
                                                    HorizontalOptions="Center"
+                                                   MaxLines="5"
+                                                   LineBreakMode="TailTruncation" />
+                                            <Label Text="{Binding CreatedAtBeauty}"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   FontSize="13"
+                                                   TextColor="Gray"
                                                    MaxLines="5"
                                                    LineBreakMode="TailTruncation" />
                                         </StackLayout>

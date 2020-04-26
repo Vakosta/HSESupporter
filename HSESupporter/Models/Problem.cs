@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -13,6 +14,15 @@ namespace HSESupporter.Models
         [JsonProperty("created_at")] public string CreatedAt { get; set; }
         [JsonProperty("updated_at")] public string UpdatedAt { get; set; }
         [JsonProperty("messages")] public List<Message> Messages { get; set; }
+
+        public string CreatedAtBeauty
+        {
+            get
+            {
+                var dateTime = DateTime.Parse(CreatedAt);
+                return dateTime.ToString("dd MMMM HH:mm");
+            }
+        }
 
         public Dictionary<string, object> GetDictionaryParams()
         {
