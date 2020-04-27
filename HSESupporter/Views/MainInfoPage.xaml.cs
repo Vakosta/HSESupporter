@@ -30,5 +30,10 @@ namespace HSESupporter.Views
             foreach (var notice in importantNotices)
                 StackImportantMessages.Children.Add(new ImportantNotice {PTitle = {Text = notice.Title}});
         }
+
+        private async void MenuItem_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ProfilePage());
+        }
     }
 }

@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
              x:Class="HSESupporter.Views.NewItemPage" Title="Новая проблема">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Отмена" Clicked="Cancel_Clicked" />
+        <!--<ToolbarItem Text="Отмена" Clicked="Cancel_Clicked" />-->
         <ToolbarItem Text="Создать" Clicked="Save_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

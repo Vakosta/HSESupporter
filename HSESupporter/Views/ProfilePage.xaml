@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Профиль"
+             x:Class="HSESupporter.Views.ProfilePage">
+    <ContentPage.Content>
+        <StackLayout Padding="16">
+            <Label Text="Ваше имя" FontSize="Medium" />
+            <Entry x:Name="Name"
+                   Placeholder="Ваше имя"
+                   Text="Владислав Анненков"
+                   IsReadOnly="True"
+                   FontSize="Small" />
+            <Label Text="Общежитие" FontSize="Medium" />
+            <Entry x:Name="Dormitory"
+                   Placeholder="Ваше имя"
+                   Text="Владислав Анненков"
+                   IsReadOnly="True"
+                   FontSize="Small" />
+            <Picker />
+            <Label Text="Номер комнаты" FontSize="Medium" />
+            <Entry x:Name="RoomNumber"
+                   Placeholder="Номер комнаты"
+                   Text="№123"
+                   IsReadOnly="True"
+                   FontSize="Small" />
+
+            <Button
+                HorizontalOptions="CenterAndExpand"
+                FontSize="16"
+                Text="Сохранить" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

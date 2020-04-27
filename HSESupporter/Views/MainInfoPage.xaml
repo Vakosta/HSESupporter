@@ -9,6 +9,9 @@
     <ContentPage.BindingContext>
         <viewmodels:MainInfoViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Профиль" Clicked="MenuItem_OnClicked" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsBusy}"
                      Command="{Binding RefreshCommand}">
@@ -19,6 +22,28 @@
                                  Padding="8,8,8,0">
                         <!--<local:ImportantNotice />-->
                     </StackLayout>
+
+                    <Label
+                        Margin="10,0,10,0"
+                        FontSize="22"
+                        Text="Владислав Анненков" />
+                    <Label
+                        Margin="10,0,10,0"
+                        FontSize="16"
+                        Text="Общежитие №1" />
+                    <Label
+                        Margin="10,0,10,0"
+                        FontSize="16"
+                        Text="Адрес: г.Москва, д.12" />
+                    <Label
+                        Margin="10,0,10,0"
+                        FontSize="16"
+                        Text="Пользователей в вашем общежитии: 12" />
+                    <Label
+                        Margin="10,0,10,0"
+                        FontSize="16"
+                        Text="Количество агентов в сети: 2" />
+
                     <CarouselView ItemsSource="{Binding Notices}"
                                   PeekAreaInsets="26" VerticalOptions="Center"
                                   HeightRequest="230">

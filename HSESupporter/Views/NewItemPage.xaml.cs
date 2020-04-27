@@ -38,12 +38,12 @@ namespace HSESupporter.Views
                 {"description", Description.Text},
                 {"status", "O"}
             });
-            await Navigation.PopModalAsync();
+            await Navigation.PopAsync();
         }
 
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            await Navigation.PopAsync();
         }
     }
 }
