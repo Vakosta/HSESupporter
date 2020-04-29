@@ -15,9 +15,19 @@ namespace HSESupporter.Views
             InitializeComponent();
 
             if (!(BindingContext is MainInfoViewModel vm)) return;
+            vm.Load += InitProfile;
             vm.Load += InitMainNoticeCollection;
-            //vm.InitNoticeCollection();
+
             vm.IsBusy = true;
+        }
+
+        private void InitProfile(object sender, EventArgs e)
+        {
+            if (!(BindingContext is MainInfoViewModel vm)) return;
+
+            Name.Text = $"{vm.Profile.FirstName} {vm.Profile.LastName}";
+            DormitoryName.Text = vm.Profile.Dormitory.Name;
+            DormitoryAddress.Text = vm.Profile.Dormitory.Address;
         }
 
         private void InitMainNoticeCollection(object sender, EventArgs e)

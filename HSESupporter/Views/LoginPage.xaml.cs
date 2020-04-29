@@ -63,7 +63,8 @@ namespace HSESupporter.Views
                     Preferences.Set("token", result.Token);
                     Preferences.Set("is_accept", result.IsAccept);
                     Preferences.Set("id", result.Profile.Id);
-                    Preferences.Set("name", result.Profile.Fio);
+                    Preferences.Set("first_name", result.Profile.FirstName);
+                    Preferences.Set("last_name", result.Profile.LastName);
                     Preferences.Set("info", result.Profile.Info);
                     Preferences.Set("is_student", result.Profile.Role.Equals("student"));
 

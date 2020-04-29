@@ -21,6 +21,13 @@ namespace HSESupporter.Services
         [Get("/auth/accept-status/")]
         Task<AuthResult> CheckAcceptStatus();
 
+        [Get("/profile/")]
+        Task<Profile> GetProfile();
+
+        [Get("/profile/")]
+        Task<Profile> SetProfile([Body(BodySerializationMethod.UrlEncoded)]
+            Dictionary<string, object> data);
+
         [Get("/dormitories/")]
         Task<List<Dormitory>> GetDormitories();
 

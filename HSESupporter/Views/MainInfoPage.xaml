@@ -24,22 +24,27 @@
                     </StackLayout>
 
                     <Label
+                        x:Name="Name"
                         Margin="10,0,10,0"
                         FontSize="22"
-                        Text="Владислав Анненков" />
+                        Text="" />
                     <Label
+                        x:Name="DormitoryName"
                         Margin="10,0,10,0"
                         FontSize="16"
-                        Text="Общежитие №1" />
+                        Text="" />
                     <Label
+                        x:Name="DormitoryAddress"
                         Margin="10,0,10,0"
                         FontSize="16"
-                        Text="Адрес: г.Москва, д.12" />
+                        Text="" />
                     <Label
+                        x:Name="DormitoryUsersCount"
                         Margin="10,0,10,0"
                         FontSize="16"
                         Text="Пользователей в вашем общежитии: 12" />
                     <Label
+                        x:Name="AgentsOnlineCount"
                         Margin="10,0,10,0"
                         FontSize="16"
                         Text="Количество агентов в сети: 2" />
