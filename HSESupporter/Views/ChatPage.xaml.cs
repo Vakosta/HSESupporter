@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using HSESupporter.Services;
 using HSESupporter.ViewModels;
@@ -18,7 +19,7 @@ namespace HSESupporter.Views
         {
             InitializeComponent();
 
-            InitMainNoticeCollection();
+            InitChatCollection();
 
             BindingContext = _viewModel = viewModel;
 
@@ -40,7 +41,7 @@ namespace HSESupporter.Views
         {
             InitializeComponent();
 
-            InitMainNoticeCollection();
+            InitChatCollection();
 
             _viewModel = new ChatViewModel();
             BindingContext = _viewModel;
@@ -59,19 +60,30 @@ namespace HSESupporter.Views
             });
         }
 
-        private async void InitMainNoticeCollection()
+        private async void InitChatCollection()
         {
-            var api = new ApiService().HseSupporterApi;
-            var result = await api.GetDormitory(1);
-            var messages = result.Messages;
+            try
+            {
+                var api = new ApiService().HseSupporterApi;
+                var result = await api.GetDormitory(1);
+                var messages = result.Messages;
 
-            foreach (var message in messages)
-                Messages.Children.Add(new Message(Preferences.Get("id", 0)
-                    .Equals(message.Author))
-                {
-                    PAuthor = {Text = $"{message.AuthorFirstName} {message.AuthorLastName}"},
-                    PText = {Text = message.Text}, PTime = {Text = message.CreatedAt.GetDateTimeText()}
-                });
+                foreach (var message in messages)
+                    Messages.Children.Add(new Message(Preferences.Get("id", 0)
+                        .Equals(message.Author))
+                    {
+                        PAuthor = {Text = $"{message.AuthorFirstName} {message.AuthorLastName}"},
+                        PText = {Text = message.Text}, PTime = {Text = message.CreatedAt.GetDateTimeText()}
+                    });
+            }
+            catch (HttpRequestException e)
+            {
+                // TODO: Возникла ошибка при подключении к сайту.
+            }
+            catch (Exception e)
+            {
+                // TODO: Возникла неизвестная ошибка.
+            }
         }
 
         private async void Button_OnClicked(object sender, EventArgs e)

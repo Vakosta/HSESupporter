@@ -24,7 +24,7 @@ namespace HSESupporter.Services
         [Get("/profile/")]
         Task<Profile> GetProfile();
 
-        [Get("/profile/")]
+        [Post("/profile/")]
         Task<Profile> SetProfile([Body(BodySerializationMethod.UrlEncoded)]
             Dictionary<string, object> data);
 

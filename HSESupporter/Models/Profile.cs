@@ -9,6 +9,7 @@ namespace HSESupporter.Models
         [JsonProperty("last_name")] public string LastName { get; set; }
         [JsonProperty("info")] public string Info { get; set; }
         [JsonProperty("role")] public string Role { get; set; }
+        [JsonProperty("room")] public string Room { get; set; }
         [JsonProperty("dormitory")] public Dormitory Dormitory { get; set; }
     }
 }

@@ -42,12 +42,14 @@
                         x:Name="DormitoryUsersCount"
                         Margin="10,0,10,0"
                         FontSize="16"
-                        Text="Пользователей в вашем общежитии: 12" />
+                        IsVisible="False"
+                        Text="" />
                     <Label
                         x:Name="AgentsOnlineCount"
                         Margin="10,0,10,0"
                         FontSize="16"
-                        Text="Количество агентов в сети: 2" />
+                        IsVisible="False"
+                        Text="" />
 
                     <CarouselView ItemsSource="{Binding Notices}"
                                   PeekAreaInsets="26" VerticalOptions="Center"

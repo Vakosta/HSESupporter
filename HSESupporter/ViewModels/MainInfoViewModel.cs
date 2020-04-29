@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using HSESupporter.Models;
 using HSESupporter.Services;
@@ -11,6 +12,13 @@ namespace HSESupporter.ViewModels
 {
     public sealed class MainInfoViewModel : BaseViewModel
     {
+        public enum ErrorType
+        {
+            NetworkError,
+            ServerError,
+            UnknownError
+        }
+
         public MainInfoViewModel()
         {
             Title = "Главная";
@@ -23,16 +31,29 @@ namespace HSESupporter.ViewModels
         public Profile Profile { get; private set; }
         public List<Notice> AllNotices { get; private set; }
         public ObservableCollection<Notice> Notices { get; }
+
         public event EventHandler Load;
+        public event EventHandler Error;
 
         public async void Init()
         {
-            await InitProfile();
-            await InitNoticeCollection();
+            try
+            {
+                await InitProfile();
+                await InitNoticeCollection();
 
-            IsBusy = false;
+                IsBusy = false;
 
-            OnLoad();
+                OnLoad();
+            }
+            catch (HttpRequestException e)
+            {
+                OnError(ErrorType.ServerError);
+            }
+            catch (Exception e)
+            {
+                OnError(ErrorType.UnknownError);
+            }
         }
 
         public async Task InitProfile()
@@ -55,6 +76,11 @@ namespace HSESupporter.ViewModels
         public void OnLoad()
         {
             Load?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void OnError(ErrorType type)
+        {
+            Error?.Invoke(this, EventArgs.Empty);
         }
     }
 }
