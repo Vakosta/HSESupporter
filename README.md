@@ -3,7 +3,7 @@
 
 ## Связанные репозитории
 - [Сервер](https://github.com/Vakosta/HSESupporterBackend) на Python;
-- [Техническое задание](https://github.com/Vakosta/HSESupporter-TechnicalTask) на LaTeX.
+- [Документация](https://github.com/Vakosta/HSESupporter-Documentation) на LaTeX.
 
 ## Контакты
 Со мной можно связаться в Telegram: [@vakosta](https://t.me/vakosta).
