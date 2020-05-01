@@ -2,28 +2,55 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:HSESupporter.ViewModels;assembly=HSESupporter"
              x:Class="HSESupporter.Views.WaitPage">
+    <ContentPage.BindingContext>
+        <viewModels:WaitViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center">
+        <StackLayout
+            Padding="12"
+            VerticalOptions="Center">
 
-            <Label Text="Подождите немного"
+            <Label Text="Здравствуйте!"
+                   HorizontalTextAlignment="Center"
                    FontSize="26"
                    VerticalOptions="Center"
                    HorizontalOptions="Center" />
-            <Label Text="Сейчас ваш аккаунт проверяет администрация."
+            <Label Text="Владислав, поделитесь вашими данными."
+                   HorizontalTextAlignment="Center"
                    HorizontalOptions="CenterAndExpand"
                    FontSize="16" />
-            <Label Text="Обычно это длится не более суток."
+            <Label Text="После сохранения мы дополнительно всё проверим, чтобы не было ошибок."
+                   HorizontalTextAlignment="Center"
                    HorizontalOptions="CenterAndExpand"
                    FontSize="14" />
+
+            <Label Text="Общежитие" FontSize="Medium" />
+            <Picker x:Name="DormitoryList"
+                    Title="Выберите из списка" />
+            <Label Text="Номер комнаты" FontSize="Medium" />
+            <Entry x:Name="RoomNumber"
+                   Placeholder="Введите его здесь"
+                   Text=""
+                   IsReadOnly="False"
+                   FontSize="Small" />
+
             <Button
                 Clicked="CheckButton_OnClicked"
                 HorizontalOptions="Center"
                 FontSize="18"
-                Text="Проверить" />
+                Text="Подтвердить" />
 
             <ActivityIndicator x:Name="LoadingIndicator"
                                IsRunning="False" />
+
+            <Label x:Name="ResultText" HorizontalTextAlignment="Center"
+                   Text="Успешно"
+                   FontSize="20"
+                   IsVisible="False"
+                   FontAttributes="Bold"
+                   TextColor="#5B69FF" />
 
         </StackLayout>
     </ContentPage.Content>
