@@ -23,21 +23,27 @@
                         <!--<local:ImportantNotice />-->
                     </StackLayout>
 
-                    <Label
-                        x:Name="Name"
-                        Margin="10,0,10,0"
-                        FontSize="22"
-                        Text="" />
-                    <Label
-                        x:Name="DormitoryName"
-                        Margin="10,0,10,0"
-                        FontSize="16"
-                        Text="" />
-                    <Label
-                        x:Name="DormitoryAddress"
-                        Margin="10,0,10,0"
-                        FontSize="16"
-                        Text="" />
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Label
+                            x:Name="Name"
+                            HorizontalTextAlignment="Center"
+                            Margin="10,0,10,0"
+                            FontSize="22"
+                            Text="" />
+                        <Label
+                            x:Name="DormitoryName"
+                            HorizontalTextAlignment="Center"
+                            Margin="10,0,10,0"
+                            FontSize="16"
+                            Text="" />
+                        <Label
+                            x:Name="DormitoryAddress"
+                            HorizontalTextAlignment="Center"
+                            Margin="10,0,10,0"
+                            FontSize="12"
+                            Text="" />
+                    </StackLayout>
+
                     <Label
                         x:Name="DormitoryUsersCount"
                         Margin="10,0,10,0"
@@ -86,6 +92,31 @@
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="10,0,10,0">
+                        <Image HeightRequest="22"
+                               WidthRequest="22"
+                               Source="calendar-month.png"
+                               Margin="0,0,0,0" />
+                        <Label Text="События:"
+                               FontSize="18"
+                               FontAttributes="Bold" />
+                    </StackLayout>
+                    <StackLayout x:Name="Events" />
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="10,12,10,0">
+                        <Image HeightRequest="22"
+                               WidthRequest="22"
+                               Source="help-circle-outline.png"
+                               Margin="0,0,0,0" />
+                        <Label Text="Главные вопросы:"
+                               FontSize="18"
+                               FontAttributes="Bold" />
+                    </StackLayout>
+                    <StackLayout x:Name="MainQuestions"
+                                 Margin="10,0,10,0" />
                 </StackLayout>
             </ScrollView>
         </RefreshView>

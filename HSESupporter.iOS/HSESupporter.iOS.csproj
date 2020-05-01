@@ -94,15 +94,15 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
+          <Visible>false</Visible>
+      </ImageAsset>
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
+          <Visible>false</Visible>
+      </ImageAsset>
+      <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
+          <Visible>false</Visible>
+      </ImageAsset>
       <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
           <Visible>false</Visible>
       </ImageAsset>
@@ -112,9 +112,18 @@
       <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
           <Visible>false</Visible>
       </ImageAsset>
+      <BundleResource Include="Resources\calendar-month.png"/>
+      <BundleResource Include="Resources\calendar-month@2x.png"/>
+      <BundleResource Include="Resources\calendar-month@3x.png"/>
       <BundleResource Include="Resources\fire.png"/>
       <BundleResource Include="Resources\fire@2x.png"/>
       <BundleResource Include="Resources\fire@3x.png"/>
+      <BundleResource Include="Resources\help-circle-outline.png"/>
+      <BundleResource Include="Resources\help-circle-outline@2x.png"/>
+      <BundleResource Include="Resources\help-circle-outline@3x.png"/>
+      <BundleResource Include="Resources\help-circle.png"/>
+      <BundleResource Include="Resources\help-circle@2x.png"/>
+      <BundleResource Include="Resources\help-circle@3x.png"/>
       <BundleResource Include="Resources\hse_logo.png"/>
       <BundleResource Include="Resources\messages.png"/>
       <BundleResource Include="Resources\messages@2x.png"/>

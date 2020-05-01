@@ -21,11 +21,25 @@
             <SubType>Designer</SubType>
             <Generator></Generator>
         </EmbeddedResource>
+        <EmbeddedResource Update="Views\Elements\EventView.xaml">
+            <SubType>Designer</SubType>
+            <Generator></Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Views\Elements\MainQuestionView.xaml">
+            <SubType>Designer</SubType>
+            <Generator></Generator>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
         <Compile Update="Views\ProfilePage.xaml.cs">
             <DependentUpon>Profile.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Elements\EventView.xaml.cs">
+            <DependentUpon>EventView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Elements\MainQuestionView.xaml.cs">
+            <DependentUpon>MainQuestionView.xaml</DependentUpon>
         </Compile>
     </ItemGroup>
 </Project>

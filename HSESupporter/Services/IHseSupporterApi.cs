@@ -21,6 +21,9 @@ namespace HSESupporter.Services
         [Get("/auth/accept-status/")]
         Task<AuthResult> CheckAcceptStatus();
 
+        [Get("/main_page/")]
+        Task<MainPage> GetMainPage();
+
         [Get("/profile/")]
         Task<Profile> GetProfile();
 

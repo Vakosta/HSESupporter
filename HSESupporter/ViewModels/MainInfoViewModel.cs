@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using HSESupporter.Models;
 using HSESupporter.Services;
 using Xamarin.Forms;
@@ -23,7 +22,10 @@ namespace HSESupporter.ViewModels
         {
             Title = "Главная";
             Notices = new ObservableCollection<Notice>();
-            RefreshCommand = new Command(Init);
+            Events = new ObservableCollection<Event>();
+            MainQuestions = new ObservableCollection<MainQuestion>();
+
+            RefreshCommand = new Command(InitMainPage);
         }
 
         public Command RefreshCommand { get; set; }
@@ -31,19 +33,34 @@ namespace HSESupporter.ViewModels
         public Profile Profile { get; private set; }
         public List<Notice> AllNotices { get; private set; }
         public ObservableCollection<Notice> Notices { get; }
+        public ObservableCollection<Event> Events { get; }
+        public ObservableCollection<MainQuestion> MainQuestions { get; }
 
         public event EventHandler Load;
         public event EventHandler Error;
 
-        public async void Init()
+        public async void InitMainPage()
         {
             try
             {
-                await InitProfile();
-                await InitNoticeCollection();
+                var api = new ApiService().HseSupporterApi;
+                var mainPage = await api.GetMainPage();
+
+                Notices.Clear();
+                Events.Clear();
+                MainQuestions.Clear();
+
+                AllNotices = mainPage.Notices;
+
+                Profile = mainPage.Profile;
+                foreach (var notice in mainPage.Notices.Where(notice => !notice.IsImportant))
+                    Notices.Add(notice);
+                foreach (var eEvent in mainPage.Events)
+                    Events.Add(eEvent);
+                foreach (var mainQuestion in mainPage.MainQuestions)
+                    MainQuestions.Add(mainQuestion);
 
                 IsBusy = false;
-
                 OnLoad();
             }
             catch (HttpRequestException e)
@@ -54,23 +71,6 @@ namespace HSESupporter.ViewModels
             {
                 OnError(ErrorType.UnknownError);
             }
-        }
-
-        public async Task InitProfile()
-        {
-            var api = new ApiService().HseSupporterApi;
-            Profile = await api.GetProfile();
-        }
-
-        public async Task InitNoticeCollection()
-        {
-            Notices.Clear();
-
-            var api = new ApiService().HseSupporterApi;
-            AllNotices = await api.GetNotices();
-
-            foreach (var notice in AllNotices.Where(notice => !notice.IsImportant))
-                Notices.Add(notice);
         }
 
         public void OnLoad()
