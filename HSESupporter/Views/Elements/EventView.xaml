@@ -4,22 +4,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HSESupporter.Views.Elements.EventView">
     <StackLayout Orientation="Horizontal" Margin="0,0,0,0">
-        <StackLayout HeightRequest="45"
-                     WidthRequest="45"
-                     Margin="10,0,8,0"
-                     BackgroundColor="PapayaWhip">
-            <Label x:Name="DateNumber"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"
-                   Margin="0,0,0,-10"
-                   FontSize="26"
-                   Text="26" />
-            <Label x:Name="DateMonth"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"
-                   FontSize="12"
-                   Text="ЯНВ" />
-        </StackLayout>
+        <Frame CornerRadius="10"
+               BorderColor="CornflowerBlue"
+               BackgroundColor="AliceBlue"
+               Padding="0"
+               Margin="10,0,8,0"
+               HasShadow="False">
+            <StackLayout HeightRequest="45"
+                         WidthRequest="45"
+                         Margin="0,0,0,0"
+                         >
+                <Label x:Name="DateNumber"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,0,0,-10"
+                       FontSize="26"
+                       Text="26" />
+                <Label x:Name="DateMonth"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       FontSize="12"
+                       Text="ЯНВ" />
+            </StackLayout>
+        </Frame>
         <Label
             x:Name="Title"
             Text="Что-то произошло в ванной, поднимитесь на второй этаж, это важно!"

@@ -18,7 +18,11 @@ namespace HSESupporter.ViewModels
         public bool IsBusy
         {
             get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
+            set
+            {
+                SetProperty(ref _isBusy, value);
+                OnBusyChanged(value);
+            }
         }
 
         public string Title
@@ -38,6 +42,10 @@ namespace HSESupporter.ViewModels
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        public virtual void OnBusyChanged(bool value)
+        {
         }
 
         #region INotifyPropertyChanged

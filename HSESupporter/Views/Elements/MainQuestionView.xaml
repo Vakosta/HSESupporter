@@ -4,11 +4,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HSESupporter.Views.Elements.MainQuestionView">
     <StackLayout Orientation="Horizontal">
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
+        </StackLayout.GestureRecognizers>
         <Label
             x:Name="Title"
             Text="Что-то произошло в ванной, поднимитесь на второй этаж, это важно!"
             VerticalOptions="Center"
             Margin="0,0,0,0"
-            FontSize="18" />
+            FontSize="19" />
+        <Image HeightRequest="19"
+               WidthRequest="19"
+               Source="arrow-right-drop-circle.png"
+               Margin="0,0,0,0" />
     </StackLayout>
 </ContentView>

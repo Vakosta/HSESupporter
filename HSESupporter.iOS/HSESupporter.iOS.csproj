@@ -112,6 +112,9 @@
       <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
           <Visible>false</Visible>
       </ImageAsset>
+      <BundleResource Include="Resources\arrow-right-drop-circle.png"/>
+      <BundleResource Include="Resources\arrow-right-drop-circle@2x.png"/>
+      <BundleResource Include="Resources\arrow-right-drop-circle@3x.png"/>
       <BundleResource Include="Resources\calendar-month.png"/>
       <BundleResource Include="Resources\calendar-month@2x.png"/>
       <BundleResource Include="Resources\calendar-month@3x.png"/>

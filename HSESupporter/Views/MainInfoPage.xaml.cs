@@ -34,6 +34,15 @@ namespace HSESupporter.Views
         /// </summary>
         private void InitProfile(object sender, EventArgs e)
         {
+            if (LoadingStatus.IsVisible)
+                LoadingStatus.IsVisible = false;
+
+            if (!EventsTitle.IsVisible)
+                EventsTitle.IsVisible = true;
+
+            if (!MainQuestionsTitle.IsVisible)
+                MainQuestionsTitle.IsVisible = true;
+
             if (!(BindingContext is MainInfoViewModel vm)) return;
 
             Name.Text = $"{vm.Profile.FirstName} {vm.Profile.LastName}";
@@ -89,13 +98,20 @@ namespace HSESupporter.Views
 
             if (!(BindingContext is MainInfoViewModel vm)) return;
             foreach (var mainQuestion in vm.MainQuestions)
-                MainQuestions.Children.Add(new MainQuestionView
+            {
+                var mainQuestionView = new MainQuestionView
                 {
-                    PTitle =
-                    {
-                        Text = mainQuestion.Question
-                    },
-                });
+                    PTitle = {Text = mainQuestion.Question},
+                    Answer = mainQuestion.Answer
+                };
+
+                mainQuestionView.Click += async (o, args) =>
+                {
+                    await DisplayAlert("Ответ", mainQuestionView.Answer, "OK");
+                };
+
+                MainQuestions.Children.Add(mainQuestionView);
+            }
         }
 
         /// <summary>

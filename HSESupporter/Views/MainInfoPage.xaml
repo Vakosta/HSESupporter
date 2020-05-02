@@ -13,110 +13,126 @@
         <ToolbarItem Text="Профиль" Clicked="MenuItem_OnClicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <RefreshView IsRefreshing="{Binding IsBusy}"
+        <RefreshView x:Name="RefreshView"
+                     IsRefreshing="{Binding IsBusy}"
                      Command="{Binding RefreshCommand}">
             <ScrollView>
                 <StackLayout>
-                    <StackLayout VerticalOptions="Fill"
-                                 x:Name="StackImportantMessages"
-                                 Padding="8,8,8,0">
-                        <!--<local:ImportantNotice />-->
+                    <StackLayout x:Name="LoadingStatus"
+                                 Orientation="Vertical"
+                                 VerticalOptions="CenterAndExpand">
+                        <ActivityIndicator
+                            IsRunning="True"
+                            Scale="1.5" />
+                        <Label Text="Идёт загрузка..."
+                               HorizontalOptions="CenterAndExpand" />
                     </StackLayout>
+                    <StackLayout x:Name="Content" IsVisible="True">
+                        <StackLayout VerticalOptions="Fill"
+                                     x:Name="StackImportantMessages"
+                                     Padding="8,8,8,0">
+                            <!--<local:ImportantNotice />-->
+                        </StackLayout>
 
-                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Label
+                                x:Name="Name"
+                                HorizontalTextAlignment="Center"
+                                Margin="10,0,10,0"
+                                FontSize="22"
+                                Text="" />
+                            <Label
+                                x:Name="DormitoryName"
+                                HorizontalTextAlignment="Center"
+                                Margin="10,0,10,0"
+                                FontSize="16"
+                                Text="" />
+                            <Label
+                                x:Name="DormitoryAddress"
+                                HorizontalTextAlignment="Center"
+                                Margin="10,0,10,0"
+                                FontSize="12"
+                                Text="" />
+                        </StackLayout>
+
                         <Label
-                            x:Name="Name"
-                            HorizontalTextAlignment="Center"
-                            Margin="10,0,10,0"
-                            FontSize="22"
-                            Text="" />
-                        <Label
-                            x:Name="DormitoryName"
-                            HorizontalTextAlignment="Center"
+                            x:Name="DormitoryUsersCount"
                             Margin="10,0,10,0"
                             FontSize="16"
+                            IsVisible="False"
                             Text="" />
                         <Label
-                            x:Name="DormitoryAddress"
-                            HorizontalTextAlignment="Center"
+                            x:Name="AgentsOnlineCount"
                             Margin="10,0,10,0"
-                            FontSize="12"
+                            FontSize="16"
+                            IsVisible="False"
                             Text="" />
+
+                        <CarouselView ItemsSource="{Binding Notices}"
+                                      PeekAreaInsets="26" VerticalOptions="Center"
+                                      HeightRequest="230">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Frame HasShadow="False"
+                                               BorderColor="DarkGray"
+                                               CornerRadius="5"
+                                               Margin="15, 5"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="Center">
+                                            <StackLayout>
+                                                <Label Text="{Binding Title}"
+                                                       FontAttributes="Bold"
+                                                       FontSize="Large"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center" />
+                                                <Label Text="{Binding Description}"
+                                                       FontAttributes="Italic"
+                                                       HorizontalOptions="Center"
+                                                       MaxLines="5"
+                                                       LineBreakMode="TailTruncation" />
+                                                <Label Text="{Binding CreatedAtBeauty}"
+                                                       HorizontalOptions="EndAndExpand"
+                                                       FontSize="13"
+                                                       TextColor="Gray"
+                                                       MaxLines="5"
+                                                       LineBreakMode="TailTruncation" />
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+
+                        <StackLayout Orientation="Horizontal"
+                                     x:Name="EventsTitle"
+                                     IsVisible="False"
+                                     Margin="10,0,10,0">
+                            <Image HeightRequest="22"
+                                   WidthRequest="22"
+                                   Source="calendar-month.png"
+                                   Margin="0,0,0,0" />
+                            <Label Text="События:"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                        </StackLayout>
+                        <StackLayout x:Name="Events" />
+
+                        <StackLayout Orientation="Horizontal"
+                                     x:Name="MainQuestionsTitle"
+                                     IsVisible="False"
+                                     Margin="10,12,10,0">
+                            <Image HeightRequest="22"
+                                   WidthRequest="22"
+                                   Source="help-circle-outline.png"
+                                   Margin="0,0,0,0" />
+                            <Label Text="Главные вопросы:"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                        </StackLayout>
+                        <StackLayout x:Name="MainQuestions"
+                                     Margin="10,0,10,0" />
                     </StackLayout>
-
-                    <Label
-                        x:Name="DormitoryUsersCount"
-                        Margin="10,0,10,0"
-                        FontSize="16"
-                        IsVisible="False"
-                        Text="" />
-                    <Label
-                        x:Name="AgentsOnlineCount"
-                        Margin="10,0,10,0"
-                        FontSize="16"
-                        IsVisible="False"
-                        Text="" />
-
-                    <CarouselView ItemsSource="{Binding Notices}"
-                                  PeekAreaInsets="26" VerticalOptions="Center"
-                                  HeightRequest="230">
-                        <CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <Frame HasShadow="False"
-                                           BorderColor="DarkGray"
-                                           CornerRadius="5"
-                                           Margin="15, 5"
-                                           HorizontalOptions="FillAndExpand"
-                                           VerticalOptions="Center">
-                                        <StackLayout>
-                                            <Label Text="{Binding Title}"
-                                                   FontAttributes="Bold"
-                                                   FontSize="Large"
-                                                   HorizontalOptions="Center"
-                                                   VerticalOptions="Center" />
-                                            <Label Text="{Binding Description}"
-                                                   FontAttributes="Italic"
-                                                   HorizontalOptions="Center"
-                                                   MaxLines="5"
-                                                   LineBreakMode="TailTruncation" />
-                                            <Label Text="{Binding CreatedAtBeauty}"
-                                                   HorizontalOptions="EndAndExpand"
-                                                   FontSize="13"
-                                                   TextColor="Gray"
-                                                   MaxLines="5"
-                                                   LineBreakMode="TailTruncation" />
-                                        </StackLayout>
-                                    </Frame>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-                    </CarouselView>
-
-                    <StackLayout Orientation="Horizontal"
-                                 Margin="10,0,10,0">
-                        <Image HeightRequest="22"
-                               WidthRequest="22"
-                               Source="calendar-month.png"
-                               Margin="0,0,0,0" />
-                        <Label Text="События:"
-                               FontSize="18"
-                               FontAttributes="Bold" />
-                    </StackLayout>
-                    <StackLayout x:Name="Events" />
-
-                    <StackLayout Orientation="Horizontal"
-                                 Margin="10,12,10,0">
-                        <Image HeightRequest="22"
-                               WidthRequest="22"
-                               Source="help-circle-outline.png"
-                               Margin="0,0,0,0" />
-                        <Label Text="Главные вопросы:"
-                               FontSize="18"
-                               FontAttributes="Bold" />
-                    </StackLayout>
-                    <StackLayout x:Name="MainQuestions"
-                                 Margin="10,0,10,0" />
                 </StackLayout>
             </ScrollView>
         </RefreshView>
