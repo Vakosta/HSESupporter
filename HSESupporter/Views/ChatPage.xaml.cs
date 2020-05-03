@@ -20,7 +20,7 @@ namespace HSESupporter.Views
         {
             InitializeComponent();
 
-            InitChatCollection();
+            InitChatCollection(true);
 
             BindingContext = _viewModel = viewModel;
         }
@@ -29,19 +29,21 @@ namespace HSESupporter.Views
         {
             InitializeComponent();
 
-            InitChatCollection();
+            InitChatCollection(true);
 
             _viewModel = new ChatViewModel();
             BindingContext = _viewModel;
         }
 
-        private async void InitChatCollection()
+        private async Task InitChatCollection(bool isScrollDown)
         {
             try
             {
                 var api = new ApiService().HseSupporterApi;
                 var result = await api.GetDormitory(1);
                 var messages = result.Messages;
+
+                Messages.Children.Clear();
 
                 foreach (var message in messages)
                     Messages.Children.Add(new Message(Preferences.Get("id", 0)
@@ -51,10 +53,13 @@ namespace HSESupporter.Views
                         PText = {Text = message.Text}, PTime = {Text = message.CreatedAt.GetDateTimeText()}
                     });
 
-                await Task.Delay(50);
-                await ScrollView.ScrollToAsync(0,
-                    StackLayout.Children.LastOrDefault().Y,
-                    false);
+                if (isScrollDown)
+                {
+                    await Task.Delay(50);
+                    await ScrollView.ScrollToAsync(0,
+                        StackLayout.Children.LastOrDefault().Y,
+                        false);
+                }
             }
             catch (HttpRequestException e)
             {
@@ -66,8 +71,12 @@ namespace HSESupporter.Views
             }
         }
 
-        private async void Button_OnClicked(object sender, EventArgs e)
+        private async void SendButton_OnClicked(object sender, EventArgs e)
         {
+            SendButton.IsVisible = false;
+            LoadingIndicatorSend.IsVisible = true;
+            LoadingIndicatorSend.IsRunning = true;
+
             try
             {
                 if (MessageEditor.Text.Equals("")) return;
@@ -104,6 +113,28 @@ namespace HSESupporter.Views
             {
                 // Nothing
             }
+
+            LoadingIndicatorSend.IsVisible = false;
+            LoadingIndicatorSend.IsRunning = false;
+            SendButton.IsVisible = true;
+        }
+
+        private async void Refresh_OnTapped(object sender, EventArgs e)
+        {
+            RefreshButton.IsVisible = false;
+            LoadingIndicatorRefresh.IsVisible = true;
+            LoadingIndicatorRefresh.IsRunning = true;
+
+            await InitChatCollection(true);
+
+            await Task.Delay(1);
+            await ScrollView.ScrollToAsync(StackLayout.Children.LastOrDefault(),
+                ScrollToPosition.MakeVisible,
+                false);
+
+            LoadingIndicatorRefresh.IsVisible = false;
+            LoadingIndicatorRefresh.IsRunning = false;
+            RefreshButton.IsVisible = true;
         }
     }
 }

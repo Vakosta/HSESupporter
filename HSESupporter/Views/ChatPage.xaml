@@ -20,15 +20,56 @@
                 <elements:Message Margin="-8,0,42,0" />
                 <elements:Message Margin="42,0,-8,0" />-->
                 </StackLayout>
-                <StackLayout BackgroundColor="Black"
-                             Margin="8, 12, 8, 8"
-                             Padding="1">
-                    <Editor
-                        x:Name="MessageEditor"
-                        AutoSize="TextChanges"
-                        Placeholder="Введите сообщение..." />
+                <StackLayout
+                    Margin="8, 12, 8, 8"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Padding="1">
+                    <Image x:Name="RefreshButton"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           Source="refresh.png"
+                           Margin="0,0,0,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="Refresh_OnTapped"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <ActivityIndicator x:Name="LoadingIndicatorRefresh"
+                                       HeightRequest="30"
+                                       WidthRequest="30"
+                                       IsRunning="False"
+                                       IsVisible="False" />
+
+                    <Frame BorderColor="DarkGray"
+                           HasShadow="False"
+                           CornerRadius="5">
+                        <Editor
+                            x:Name="MessageEditor"
+                            WidthRequest="285"
+                            AutoSize="TextChanges"
+                            Placeholder="Введите сообщение..." />
+                    </Frame>
+
+                    <Image x:Name="SendButton"
+                           HeightRequest="30"
+                           WidthRequest="30"
+                           Source="send.png"
+                           Margin="0,0,0,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="SendButton_OnClicked"
+                                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <ActivityIndicator x:Name="LoadingIndicatorSend"
+                                       HeightRequest="30"
+                                       WidthRequest="30"
+                                       IsRunning="False"
+                                       IsVisible="False" />
                 </StackLayout>
-                <Button Text="Отпр." HorizontalOptions="End" Margin="0,-25,8,0" Clicked="Button_OnClicked" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
