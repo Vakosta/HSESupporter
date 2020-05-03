@@ -68,9 +68,13 @@
                             IsVisible="False"
                             Text="" />
 
-                        <CarouselView ItemsSource="{Binding Notices}"
+                        <CarouselView x:Name="CarouselView"
+                                      ItemsSource="{Binding Notices}"
                                       PeekAreaInsets="26" VerticalOptions="Center"
                                       HeightRequest="230">
+                            <CarouselView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
+                            </CarouselView.GestureRecognizers>
                             <CarouselView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>

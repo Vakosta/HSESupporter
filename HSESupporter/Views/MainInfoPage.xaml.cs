@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using HSESupporter.Models;
 using HSESupporter.ViewModels;
 using HSESupporter.Views.Elements;
 using Xamarin.Essentials;
@@ -61,6 +62,8 @@ namespace HSESupporter.Views
         /// </summary>
         private void InitMainNoticeCollection(object sender, EventArgs e)
         {
+            CarouselView.Position = 0;
+
             StackImportantMessages.Children.Clear();
 
             if (!(BindingContext is MainInfoViewModel vm)) return;
@@ -128,6 +131,33 @@ namespace HSESupporter.Views
         private async void MenuItem_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ProfilePage());
+        }
+
+        /// <summary>
+        /// Срабатывает при нажатии на карусель с новостями.
+        /// Получает активную новость и открывает подробности.
+        /// </summary>
+        private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            if (!(BindingContext is MainInfoViewModel vm)) return;
+            var currentItem = (Notice) CarouselView.CurrentItem
+                              ?? vm.Notices.First(notice => !notice.IsImportant);
+
+            await Navigation.PushAsync(new NoticePage
+            {
+                PTitle =
+                {
+                    Text = currentItem.Title
+                },
+                PDescription =
+                {
+                    Text = currentItem.Description
+                },
+                PDate =
+                {
+                    Text = currentItem.CreatedAtBeauty
+                }
+            });
         }
     }
 }

@@ -29,6 +29,10 @@
             <SubType>Designer</SubType>
             <Generator></Generator>
         </EmbeddedResource>
+        <EmbeddedResource Update="Views\NoticePage.xaml">
+            <SubType>Designer</SubType>
+            <Generator></Generator>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -40,6 +44,9 @@
         </Compile>
         <Compile Update="Views\Elements\MainQuestionView.xaml.cs">
             <DependentUpon>MainQuestionView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\NoticePage.xaml.cs">
+            <DependentUpon>NoticePage.xaml</DependentUpon>
         </Compile>
     </ItemGroup>
 </Project>

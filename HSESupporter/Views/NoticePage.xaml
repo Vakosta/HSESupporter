@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Новость"
+             x:Class="HSESupporter.Views.NoticePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="10">
+                <Label x:Name="Title" d:Text="Item name" FontSize="22" FontAttributes="Bold" />
+                <Label x:Name="Description" Padding="4" BackgroundColor="AliceBlue"
+                       d:Text="Item description" FontSize="18" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Дата добавления:" FontSize="16" />
+                    <Label x:Name="Date" Text="в обработке" Padding="1" FontSize="16" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
