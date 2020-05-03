@@ -54,10 +54,11 @@ namespace HSESupporter.Views
                 var text = MessageEditor.Text;
                 MessageEditor.Text = "";
 
-                var fio = Preferences.Get("name", "").Split(' ');
+                var firstName = Preferences.Get("first_name", "");
+                var lastName = Preferences.Get("last_name", "");
                 Messages.Children.Add(new Message(true)
                 {
-                    PAuthor = {Text = $"{fio[1]} {fio[0]}"}, PText = {Text = text},
+                    PAuthor = {Text = $"{firstName} {lastName}"}, PText = {Text = text},
                     PTime = {Text = DateTime.Now.ToString("HH:mm")}
                 });
 
