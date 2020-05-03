@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HSESupporter.Services;
@@ -22,19 +23,6 @@ namespace HSESupporter.Views
             InitChatCollection();
 
             BindingContext = _viewModel = viewModel;
-
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    await ScrollView.ScrollToAsync(0, Messages.Height, true);
-                }
-                else
-                {
-                    await Task.Delay(10); //UI will be updated by Xamarin
-                    await ScrollView.ScrollToAsync(Messages, ScrollToPosition.End, true);
-                }
-            });
         }
 
         public ChatPage()
@@ -45,19 +33,6 @@ namespace HSESupporter.Views
 
             _viewModel = new ChatViewModel();
             BindingContext = _viewModel;
-
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    await ScrollView.ScrollToAsync(0, Messages.Height, true);
-                }
-                else
-                {
-                    await Task.Delay(10); //UI will be updated by Xamarin
-                    await ScrollView.ScrollToAsync(Messages, ScrollToPosition.End, true);
-                }
-            });
         }
 
         private async void InitChatCollection()
@@ -75,6 +50,11 @@ namespace HSESupporter.Views
                         PAuthor = {Text = $"{message.AuthorFirstName} {message.AuthorLastName}"},
                         PText = {Text = message.Text}, PTime = {Text = message.CreatedAt.GetDateTimeText()}
                     });
+
+                await Task.Delay(50);
+                await ScrollView.ScrollToAsync(0,
+                    StackLayout.Children.LastOrDefault().Y,
+                    false);
             }
             catch (HttpRequestException e)
             {
@@ -95,12 +75,8 @@ namespace HSESupporter.Views
                 var text = MessageEditor.Text;
                 MessageEditor.Text = "";
 
-                var fio = Preferences.Get("name", "").Split(' ');
-                Messages.Children.Add(new Message(true)
-                {
-                    PAuthor = {Text = $"{fio[1]} {fio[0]}"}, PText = {Text = text},
-                    PTime = {Text = DateTime.Now.ToString("HH:mm")}
-                });
+                var firstName = Preferences.Get("first_name", "");
+                var lastName = Preferences.Get("last_name", "");
 
                 var message = new Models.Message
                 {
@@ -112,6 +88,17 @@ namespace HSESupporter.Views
 
                 var api = new ApiService().HseSupporterApi;
                 await api.SendMessage(message.GetDictionaryParams());
+
+                Messages.Children.Add(new Message(true)
+                {
+                    PAuthor = {Text = $"{firstName} {lastName}"}, PText = {Text = text},
+                    PTime = {Text = DateTime.Now.ToString("HH:mm")}
+                });
+
+                await Task.Delay(1);
+                await ScrollView.ScrollToAsync(StackLayout.Children.LastOrDefault(),
+                    ScrollToPosition.MakeVisible,
+                    false);
             }
             catch (Exception ex)
             {

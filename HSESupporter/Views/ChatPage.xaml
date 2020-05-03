@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:HSESupporter.ViewModels;assembly=HSESupporter"
+             xmlns:elements="clr-namespace:HSESupporter.Views.Elements;assembly=HSESupporter"
              Title="{Binding Title}"
              x:Class="HSESupporter.Views.ChatPage">
     <ContentPage.BindingContext>
@@ -11,7 +12,7 @@
     <ContentPage.Content>
         <ScrollView
             x:Name="ScrollView">
-            <StackLayout>
+            <StackLayout x:Name="StackLayout">
                 <StackLayout VerticalOptions="Fill"
                              x:Name="Messages"
                              Padding="12,8,12,0">
