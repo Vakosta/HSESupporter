@@ -53,6 +53,7 @@ namespace HSESupporter.Views
             Preferences.Set("id", vm.Profile.Id);
             Preferences.Set("first_name", vm.Profile.FirstName);
             Preferences.Set("last_name", vm.Profile.LastName);
+            Preferences.Set("dormitory_id", vm.Profile.Dormitory.Id);
             Preferences.Set("dormitory_name", vm.Profile.Dormitory.Name);
             Preferences.Set("room", vm.Profile.Room);
         }

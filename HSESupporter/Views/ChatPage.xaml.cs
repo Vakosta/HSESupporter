@@ -40,7 +40,7 @@ namespace HSESupporter.Views
             try
             {
                 var api = new ApiService().HseSupporterApi;
-                var result = await api.GetDormitory(1);
+                var result = await api.GetDormitory(Preferences.Get("dormitory_id", 1));
                 var messages = result.Messages;
 
                 Messages.Children.Clear();
@@ -91,7 +91,7 @@ namespace HSESupporter.Views
                 {
                     IsRead = false,
                     IsFromStudent = true,
-                    Dormitory = 1,
+                    Dormitory = Preferences.Get("dormitory_id", 1),
                     Text = text
                 };
 

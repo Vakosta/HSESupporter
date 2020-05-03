@@ -65,6 +65,7 @@ namespace HSESupporter.Views
                     Preferences.Set("id", result.Profile.Id);
                     Preferences.Set("first_name", result.Profile.FirstName);
                     Preferences.Set("last_name", result.Profile.LastName);
+                    Preferences.Set("dormitory_id", result.Profile.Dormitory.Id);
                     Preferences.Set("info", result.Profile.Info);
                     Preferences.Set("is_student", result.Profile.Role.Equals("student"));
 
