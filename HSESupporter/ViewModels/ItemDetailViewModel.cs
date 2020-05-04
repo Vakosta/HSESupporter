@@ -1,4 +1,6 @@
-﻿using HSESupporter.Models;
+﻿using System;
+using HSESupporter.Models;
+using Xamarin.Forms;
 
 namespace HSESupporter.ViewModels
 {
@@ -8,8 +10,24 @@ namespace HSESupporter.ViewModels
         {
             Title = item?.Title;
             Item = item;
+
+            RefreshCommand = new Command(InitItem);
         }
 
+        public Command RefreshCommand { get; set; }
+
         public Problem Item { get; set; }
+
+        public event EventHandler Load;
+
+        private void InitItem()
+        {
+            OnLoad();
+        }
+
+        public void OnLoad()
+        {
+            Load?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

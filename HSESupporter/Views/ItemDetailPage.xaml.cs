@@ -21,14 +21,9 @@ namespace HSESupporter.Views
             InitializeComponent();
 
             BindingContext = _viewModel = viewModel;
+            _viewModel.Load += InitItem;
 
-            foreach (var message in _viewModel.Item.Messages)
-                Messages.Children.Add(new Message(Preferences.Get("id", 0)
-                    .Equals(message.Author))
-                {
-                    PAuthor = {Text = $"{message.AuthorFirstName} {message.AuthorLastName}"},
-                    PText = {Text = message.Text}, PTime = {Text = message.CreatedAt.GetDateTimeText()}
-                });
+            _viewModel.OnLoad();
         }
 
         public ItemDetailPage()
@@ -43,6 +38,41 @@ namespace HSESupporter.Views
 
             _viewModel = new ItemDetailViewModel(item);
             BindingContext = _viewModel;
+        }
+
+        private async void InitItem(object sender, EventArgs e)
+        {
+            _viewModel.IsBusy = true;
+            try
+            {
+                var api = new ApiService().HseSupporterApi;
+                var result = await api.GetProblem(_viewModel.Item.Id);
+
+                _viewModel.Title = result.Title;
+                Title.Text = result.Title;
+                Description.Text = result.Description;
+
+                Messages.Children.Clear();
+                foreach (var message in result.Messages)
+                    Messages.Children.Add(new Message(Preferences.Get("id", 0)
+                        .Equals(message.Author))
+                    {
+                        PAuthor = {Text = $"{message.AuthorFirstName} {message.AuthorLastName}"},
+                        PText = {Text = message.Text}, PTime = {Text = message.CreatedAt.GetDateTimeText()}
+                    });
+
+                if (LoadingStatus.IsVisible)
+                    LoadingStatus.IsVisible = false;
+                if (!Content.IsVisible)
+                    Content.IsVisible = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                _viewModel.IsBusy = false;
+            }
         }
 
         private async void Button_OnClicked(object sender, EventArgs e)

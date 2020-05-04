@@ -5,34 +5,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="HSESupporter.Views.ItemDetailPage" Title="{Binding Title}">
-    <RefreshView IsRefreshing="{Binding IsBusy}"
+    <RefreshView x:Name="RefreshView" IsRefreshing="{Binding IsBusy}"
                  Command="{Binding RefreshCommand}">
         <ScrollView>
             <StackLayout Spacing="20" Padding="10">
-                <Label Text="{Binding Item.Title}" d:Text="Item name" FontSize="20" />
-                <Label Text="{Binding Item.Description}" Padding="4" BackgroundColor="AliceBlue"
-                       d:Text="Item description" FontSize="16" />
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Статус:" FontSize="14" />
-                    <Label Text="в обработке" Padding="1" BackgroundColor="LightGoldenrodYellow" FontSize="14" />
+                <StackLayout x:Name="LoadingStatus"
+                             Orientation="Vertical"
+                             VerticalOptions="CenterAndExpand">
+                    <ActivityIndicator
+                        IsRunning="True"
+                        VerticalOptions="Center"
+                        Scale="1.5" />
+                    <Label Text="Идёт загрузка..."
+                           VerticalOptions="Center"
+                           HorizontalOptions="CenterAndExpand" />
                 </StackLayout>
 
-                <StackLayout VerticalOptions="Fill"
-                             x:Name="Messages"
-                             Padding="8,8,8,0">
-                    <!--<local:Message Margin="42,0,-8,0" />
+                <StackLayout x:Name="Content" IsVisible="False">
+                    <Label x:Name="Title" d:Text="Item name" FontSize="20" />
+                    <Label x:Name="Description" Padding="4"
+                           BackgroundColor="AliceBlue"
+                           d:Text="Item description" FontSize="16" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Статус:" FontSize="14" />
+                        <Label Text="в обработке" Padding="1" BackgroundColor="LightGoldenrodYellow" FontSize="14" />
+                    </StackLayout>
+
+                    <StackLayout VerticalOptions="Fill"
+                                 x:Name="Messages"
+                                 Padding="8,8,8,0">
+                        <!--<local:Message Margin="42,0,-8,0" />
                     <local:Message Margin="-8,0,42,0" />
                     <local:Message Margin="42,0,-8,0" />-->
-                </StackLayout>
+                    </StackLayout>
 
-                <StackLayout BackgroundColor="Black"
-                             Padding="1">
-                    <Editor
-                        x:Name="MessageEditor"
-                        AutoSize="TextChanges"
-                        Placeholder="Введите сообщение..." />
+                    <StackLayout BackgroundColor="Black"
+                                 Padding="1">
+                        <Editor
+                            x:Name="MessageEditor"
+                            AutoSize="TextChanges"
+                            Placeholder="Введите сообщение..." />
+                    </StackLayout>
+                    <Button Text="Отпр." HorizontalOptions="End" Margin="0,-25,0,0" Clicked="Button_OnClicked" />
                 </StackLayout>
-                <Button Text="Отпр." HorizontalOptions="End" Margin="0,-25,0,0" Clicked="Button_OnClicked" />
             </StackLayout>
         </ScrollView>
     </RefreshView>
