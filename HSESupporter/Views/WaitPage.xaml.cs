@@ -37,6 +37,8 @@ namespace HSESupporter.Views
                 var api = new ApiService().HseSupporterApi;
                 var result = await api.SetProfile(values);
 
+                Preferences.Set("dormitory_id", result.Dormitory.Id);
+
                 ResultText.Text = "Сохранено";
 
                 Preferences.Set("is_accept", true);

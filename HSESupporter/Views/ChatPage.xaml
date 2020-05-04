@@ -20,12 +20,18 @@
                 <elements:Message Margin="-8,0,42,0" />
                 <elements:Message Margin="42,0,-8,0" />-->
                 </StackLayout>
-                <StackLayout
+                <Grid
                     Margin="8, 12, 8, 8"
                     HorizontalOptions="FillAndExpand"
-                    Orientation="Horizontal"
                     Padding="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+
                     <Image x:Name="RefreshButton"
+                           Grid.Column="0"
                            HeightRequest="30"
                            WidthRequest="30"
                            Source="refresh.png"
@@ -37,25 +43,26 @@
                         </Image.GestureRecognizers>
                     </Image>
 
-                    <ActivityIndicator x:Name="LoadingIndicatorRefresh"
+                    <ActivityIndicator Grid.Column="0" x:Name="LoadingIndicatorRefresh"
                                        HeightRequest="30"
                                        WidthRequest="30"
                                        IsRunning="False"
                                        IsVisible="False" />
 
-                    <Frame BorderColor="DarkGray"
+                    <Frame Grid.Column="1" BorderColor="DarkGray"
                            HasShadow="False"
+                           HorizontalOptions="FillAndExpand"
                            CornerRadius="5">
                         <Editor
                             x:Name="MessageEditor"
-                            WidthRequest="285"
                             AutoSize="TextChanges"
                             Placeholder="Введите сообщение..." />
                     </Frame>
 
-                    <Image x:Name="SendButton"
+                    <Image Grid.Column="2" x:Name="SendButton"
                            HeightRequest="30"
                            WidthRequest="30"
+                           HorizontalOptions="End"
                            Source="send.png"
                            Margin="0,0,0,0">
                         <Image.GestureRecognizers>
@@ -64,12 +71,12 @@
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
-                    <ActivityIndicator x:Name="LoadingIndicatorSend"
+                    <ActivityIndicator Grid.Column="2" x:Name="LoadingIndicatorSend"
                                        HeightRequest="30"
                                        WidthRequest="30"
                                        IsRunning="False"
                                        IsVisible="False" />
-                </StackLayout>
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

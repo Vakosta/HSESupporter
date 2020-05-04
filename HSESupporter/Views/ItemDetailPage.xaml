@@ -39,14 +39,43 @@
                     <local:Message Margin="42,0,-8,0" />-->
                     </StackLayout>
 
-                    <StackLayout BackgroundColor="Black"
-                                 Padding="1">
-                        <Editor
-                            x:Name="MessageEditor"
-                            AutoSize="TextChanges"
-                            Placeholder="Введите сообщение..." />
-                    </StackLayout>
-                    <Button Text="Отпр." HorizontalOptions="End" Margin="0,-25,0,0" Clicked="Button_OnClicked" />
+                    <Grid
+                        Margin="8, 12, 8, 8"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0" BorderColor="DarkGray"
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand"
+                               CornerRadius="5">
+                            <Editor
+                                x:Name="MessageEditor"
+                                AutoSize="TextChanges"
+                                Placeholder="Введите сообщение..." />
+                        </Frame>
+
+                        <Image Grid.Column="1" x:Name="SendButton"
+                               HeightRequest="30"
+                               WidthRequest="30"
+                               HorizontalOptions="End"
+                               Source="send.png"
+                               Margin="0,0,0,0">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="SendButton_OnClicked"
+                                    NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <ActivityIndicator Grid.Column="1" x:Name="LoadingIndicatorSend"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           IsRunning="False"
+                                           IsVisible="False" />
+                    </Grid>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

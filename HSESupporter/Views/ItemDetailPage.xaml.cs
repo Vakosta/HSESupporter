@@ -75,7 +75,7 @@ namespace HSESupporter.Views
             }
         }
 
-        private async void Button_OnClicked(object sender, EventArgs e)
+        private async void SendButton_OnClicked(object sender, EventArgs e)
         {
             try
             {
