@@ -23,11 +23,13 @@
                                  VerticalOptions="CenterAndExpand">
                         <ActivityIndicator
                             IsRunning="True"
+                            VerticalOptions="Center"
                             Scale="1.5" />
                         <Label Text="Идёт загрузка..."
+                               VerticalOptions="Center"
                                HorizontalOptions="CenterAndExpand" />
                     </StackLayout>
-                    <StackLayout x:Name="Content" IsVisible="True">
+                    <StackLayout x:Name="Content" IsVisible="False">
                         <StackLayout VerticalOptions="Fill"
                                      x:Name="StackImportantMessages"
                                      Padding="8,8,8,0">
@@ -69,7 +71,6 @@
                             Text="" />
 
                         <CarouselView x:Name="CarouselView"
-                                      ItemsSource="{Binding Notices}"
                                       PeekAreaInsets="26" VerticalOptions="Center"
                                       HeightRequest="230">
                             <CarouselView.GestureRecognizers>

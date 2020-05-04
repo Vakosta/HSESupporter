@@ -50,11 +50,14 @@ namespace HSESupporter.Services
         Task<List<Problem>> SaveProblem([Body(BodySerializationMethod.UrlEncoded)]
             Dictionary<string, object> data);
 
-        [Post("/messages/")]
-        Task<List<Problem>> SendMessage([Body(BodySerializationMethod.UrlEncoded)]
-            Dictionary<string, object> data);
+        [Get("/problems/{id}/")]
+        Task<Problem> GetProblem(int id);
 
         [Delete("/problems/{id}/")]
         Task<Problem> DeleteProblem(int id);
+
+        [Post("/messages/")]
+        Task<List<Problem>> SendMessage([Body(BodySerializationMethod.UrlEncoded)]
+            Dictionary<string, object> data);
     }
 }

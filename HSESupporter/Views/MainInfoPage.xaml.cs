@@ -35,16 +35,22 @@ namespace HSESupporter.Views
         /// </summary>
         private void InitProfile(object sender, EventArgs e)
         {
+            if (!(BindingContext is MainInfoViewModel vm)) return;
+
             if (LoadingStatus.IsVisible)
                 LoadingStatus.IsVisible = false;
+
+            if (!Content.IsVisible)
+            {
+                Content.IsVisible = true;
+                CarouselView.SetBinding(ItemsView.ItemsSourceProperty, "Notices");
+            }
 
             if (!EventsTitle.IsVisible)
                 EventsTitle.IsVisible = true;
 
             if (!MainQuestionsTitle.IsVisible)
                 MainQuestionsTitle.IsVisible = true;
-
-            if (!(BindingContext is MainInfoViewModel vm)) return;
 
             Name.Text = $"{vm.Profile.FirstName} {vm.Profile.LastName}";
             DormitoryName.Text = vm.Profile.Dormitory.Name;

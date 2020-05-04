@@ -40,8 +40,7 @@ namespace HSESupporter.Views
         {
             base.OnAppearing();
 
-            if (_viewModel.Items.Count == 0)
-                _viewModel.LoadItemsCommand.Execute(null);
+            _viewModel.LoadItemsCommand.Execute(null);
         }
 
         private async void MenuItem_OnDelete(object sender, EventArgs e)
