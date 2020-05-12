@@ -15,6 +15,12 @@
             <Label Text="Расскажите подробнее..." FontSize="Medium" />
             <Editor x:Name="Description" AutoSize="TextChanges"
                     Placeholder="Начните рассказывать о подробностях тут..." FontSize="Small" Margin="0" />
+            <Label x:Name="ResultText" HorizontalTextAlignment="Center"
+                   Text="Успешно"
+                   FontSize="20"
+                   IsVisible="False"
+                   FontAttributes="Bold"
+                   TextColor="#5B69FF" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

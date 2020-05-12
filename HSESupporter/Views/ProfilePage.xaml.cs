@@ -20,7 +20,7 @@ namespace HSESupporter.Views
             DormitoryList.SelectedIndex = vm.Dormitories.IndexOf(Preferences.Get("dormitory_name", ""));
         }
 
-        private async void Button_OnClicked(object sender, EventArgs e)
+        private async void SaveButton_OnClicked(object sender, EventArgs e)
         {
             try
             {

@@ -22,10 +22,11 @@
                                  Orientation="Vertical"
                                  VerticalOptions="CenterAndExpand">
                         <ActivityIndicator
+                            x:Name="ActivityIndicator"
                             IsRunning="True"
                             VerticalOptions="Center"
                             Scale="1.5" />
-                        <Label Text="Идёт загрузка..."
+                        <Label x:Name="ResultText" Text="Идёт загрузка..."
                                VerticalOptions="Center"
                                HorizontalOptions="CenterAndExpand" />
                     </StackLayout>

@@ -29,16 +29,24 @@ namespace HSESupporter.Views
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
-
-            var api = new ApiService().HseSupporterApi;
-            await api.SaveProblem(new Dictionary<string, object>
+            try
             {
-                {"title", Title.Text},
-                {"description", Description.Text},
-                {"status", "O"}
-            });
-            await Navigation.PopAsync();
+                MessagingCenter.Send(this, "AddItem", Item);
+
+                var api = new ApiService().HseSupporterApi;
+                await api.SaveProblem(new Dictionary<string, object>
+                {
+                    {"title", Title.Text},
+                    {"description", Description.Text},
+                    {"status", "O"}
+                });
+                await Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                ResultText.IsVisible = true;
+                ResultText.Text = "Произошла ошибка.";
+            }
         }
 
         private async void Cancel_Clicked(object sender, EventArgs e)

@@ -33,7 +33,7 @@
             <Button
                 HorizontalOptions="CenterAndExpand"
                 FontSize="16"
-                Clicked="Button_OnClicked"
+                Clicked="SaveButton_OnClicked"
                 Text="Сохранить" />
             <ActivityIndicator x:Name="LoadingIndicator"
                                IsRunning="False" />

@@ -21,7 +21,7 @@ namespace HSESupporter.Views
             if (!(BindingContext is MainInfoViewModel vm)) return;
 
             vm.Load += InitProfile;
-            vm.Load += InitMainNoticeCollection;
+            vm.Load += InitMainNotices;
             vm.Load += InitEvents;
             vm.Load += InitMainQuestions;
 
@@ -67,7 +67,7 @@ namespace HSESupporter.Views
         /// <summary>
         /// Инициализирует блок с главными сообщениями.
         /// </summary>
-        private void InitMainNoticeCollection(object sender, EventArgs e)
+        private void InitMainNotices(object sender, EventArgs e)
         {
             CarouselView.Position = 0;
 
@@ -129,7 +129,8 @@ namespace HSESupporter.Views
         /// </summary>
         private void OnError(object sender, EventArgs e)
         {
-            Console.WriteLine();
+            ActivityIndicator.IsRunning = false;
+            ResultText.Text = "Произошла ошибка.";
         }
 
         /// <summary>

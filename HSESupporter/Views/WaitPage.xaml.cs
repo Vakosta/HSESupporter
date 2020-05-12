@@ -20,7 +20,7 @@ namespace HSESupporter.Views
             DormitoryList.ItemsSource = vm.Dormitories;
         }
 
-        private async void CheckButton_OnClicked(object sender, EventArgs e)
+        private async void SaveButton_OnClicked(object sender, EventArgs e)
         {
             try
             {

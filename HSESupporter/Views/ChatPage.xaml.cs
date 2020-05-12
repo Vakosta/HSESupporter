@@ -20,7 +20,7 @@ namespace HSESupporter.Views
         {
             InitializeComponent();
 
-            InitChatCollection(true);
+            InitChat(true);
 
             BindingContext = _viewModel = viewModel;
         }
@@ -29,13 +29,13 @@ namespace HSESupporter.Views
         {
             InitializeComponent();
 
-            InitChatCollection(true);
+            InitChat(true);
 
             _viewModel = new ChatViewModel();
             BindingContext = _viewModel;
         }
 
-        private async Task InitChatCollection(bool isScrollDown)
+        private async Task InitChat(bool isScrollDown)
         {
             try
             {
@@ -63,11 +63,11 @@ namespace HSESupporter.Views
             }
             catch (HttpRequestException e)
             {
-                // TODO: Возникла ошибка при подключении к сайту.
+                await DisplayAlert("Ошибка", "Возникла ошибка при подключении к сайту", "OK");
             }
             catch (Exception e)
             {
-                // TODO: Возникла неизвестная ошибка.
+                await DisplayAlert("Ошибка", "Возникла ошибка", "OK");
             }
         }
 
@@ -125,7 +125,7 @@ namespace HSESupporter.Views
             LoadingIndicatorRefresh.IsVisible = true;
             LoadingIndicatorRefresh.IsRunning = true;
 
-            await InitChatCollection(true);
+            await InitChat(true);
 
             await Task.Delay(1);
             await ScrollView.ScrollToAsync(StackLayout.Children.LastOrDefault(),

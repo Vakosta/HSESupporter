@@ -37,7 +37,7 @@
                    FontSize="Small" />
 
             <Button
-                Clicked="CheckButton_OnClicked"
+                Clicked="SaveButton_OnClicked"
                 HorizontalOptions="Center"
                 FontSize="18"
                 Text="Подтвердить" />
