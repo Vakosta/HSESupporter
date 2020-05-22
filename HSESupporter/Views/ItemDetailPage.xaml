@@ -28,7 +28,7 @@
                            d:Text="Item description" FontSize="16" />
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Статус:" FontSize="14" />
-                        <Label Text="в обработке" Padding="1" BackgroundColor="LightGoldenrodYellow" FontSize="14" />
+                        <Label x:Name="Status" Text="в обработке" Padding="1" BackgroundColor="LightGoldenrodYellow" FontSize="14" />
                     </StackLayout>
 
                     <StackLayout VerticalOptions="Fill"
@@ -40,6 +40,7 @@
                     </StackLayout>
 
                     <Grid
+                        x:Name="InputField"
                         Margin="8, 12, 8, 8"
                         HorizontalOptions="FillAndExpand"
                         Padding="1">

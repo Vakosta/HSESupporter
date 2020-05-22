@@ -10,6 +10,7 @@ namespace HSESupporter.Models
         [JsonProperty("author")] public string Author { get; set; }
         [JsonProperty("title")] public string Title { get; set; }
         [JsonProperty("description")] public string Description { get; set; }
+        [JsonProperty("has_new_messages")] public bool HasNewMessages { get; set; }
         [JsonProperty("status")] public string Status { get; set; }
         [JsonProperty("created_at")] public string CreatedAt { get; set; }
         [JsonProperty("updated_at")] public string UpdatedAt { get; set; }

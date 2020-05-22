@@ -56,9 +56,9 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Приложение работает на платформах" />
+                                <Span Text="Приложение работает на платформе" />
                                 <Span Text=" " />
-                                <Span Text="iOS и Android" FontAttributes="Bold" />
+                                <Span Text="iOS" FontAttributes="Bold" />
                                 <Span Text="." />
                             </FormattedString.Spans>
                         </FormattedString>

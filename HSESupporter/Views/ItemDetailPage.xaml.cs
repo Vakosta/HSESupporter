@@ -9,8 +9,6 @@ using Message = HSESupporter.Views.Elements.Message;
 
 namespace HSESupporter.Views
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class ItemDetailPage : ContentPage
     {
@@ -51,6 +49,18 @@ namespace HSESupporter.Views
                 _viewModel.Title = result.Title;
                 Title.Text = result.Title;
                 Description.Text = result.Description;
+                if (result.Status.Equals("O"))
+                {
+                    InputField.IsVisible = true;
+                    Status.Text = "в обработке";
+                    Status.BackgroundColor = Color.LightGoldenrodYellow;
+                }
+                else
+                {
+                    InputField.IsVisible = false;
+                    Status.Text = "обращение закрыто";
+                    Status.BackgroundColor = Color.Salmon;
+                }
 
                 Messages.Children.Clear();
                 foreach (var message in result.Messages)

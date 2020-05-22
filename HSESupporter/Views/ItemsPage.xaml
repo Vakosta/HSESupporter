@@ -32,12 +32,15 @@
                                        Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
                             </StackLayout>
 
-                            <Label Text="{Binding CreatedAtBeauty}" d:Text="{Binding .}"
-                                   LineBreakMode="NoWrap"
-                                   HorizontalOptions="EndAndExpand"
-                                   TextColor="Gray"
-                                   Style="{DynamicResource ListItemTextStyle}"
-                                   FontSize="13" />
+                            <StackLayout HorizontalOptions="EndAndExpand">
+                                <Label Text="{Binding CreatedAtBeauty}" d:Text="{Binding .}"
+                                       LineBreakMode="NoWrap"
+                                       HorizontalOptions="EndAndExpand"
+                                       TextColor="Gray"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="13" />
+                                <Label x:Name="NewLabel" IsVisible="{Binding HasNewMessages}" HorizontalOptions="EndAndExpand" TextColor="Coral">NEW</Label>
+                            </StackLayout>
                         </StackLayout>
                         <ViewCell.ContextActions>
                             <MenuItem Clicked="MenuItem_OnDelete"
