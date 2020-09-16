@@ -9,4 +9,4 @@
 
 ## Связанные репозитории
 - [Сервер](https://github.com/Vakosta/HSESupporterBackend) на Python;
-- [Документация](https://github.com/Vakosta/HSESupporter-Documentation) на LaTeX.
+- [Документация](https://github.com/Vakosta/HSESupporterDocumentation) на LaTeX.
